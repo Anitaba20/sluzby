@@ -1,0 +1,56 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ nazov }}{% endblock %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="my-ads-page">
+
+        <h1>{{ nazov }}</h1>
+
+        {% if inzeraty %}
+
+            {% for inzerat in inzeraty %}
+
+                <div class="my-ad-card">
+
+                    <h3>{{ inzerat.nazov }}</h3>
+
+                    <p>
+                        Kategória:
+                        {{ inzerat.kategoria }}
+                    </p>
+
+                    {% if inzerat.podkategoria %}
+                        <p>
+                            Podkategória:
+                            {{ inzerat.podkategoria }}
+                        </p>
+                    {% endif %}
+
+                    <p>
+                        Lokalita:
+                        {{ inzerat.lokalita }}
+                    </p>
+
+                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}">
+                        Detail inzerátu
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>V tejto podkategórii zatiaľ nie sú žiadne inzeráty.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

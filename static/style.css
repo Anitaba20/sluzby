@@ -370,3 +370,559 @@ body{
 .vzdelanie-img {
     margin-top: 8px;
 }
+
+/******** NOVY HEADER ********/
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#111827;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.logo img{
+    height:48px;
+    width:auto;
+}
+
+.category-menu{
+    position:relative;
+}
+
+.category-btn{
+    background:white;
+    border:1px solid #d1d5db;
+    padding:10px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.category-dropdown{
+    display:none;
+    position:absolute;
+    top:44px;
+    left:0;
+    width:300px;
+    background:white;
+    border:1px solid #ddd;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    z-index:100;
+}
+
+.category-menu:hover .category-dropdown{
+    display:block;
+}
+
+.category-dropdown a{
+    display:block;
+    padding:10px 14px;
+    color:#111827;
+    text-decoration:none;
+    font-size:14px;
+    background:white;
+}
+
+.category-dropdown a:hover{
+    background:#f3f4f6;
+}
+
+.category-item{
+    position:relative;
+}
+
+.submenu{
+    display:none;
+    position:absolute;
+    left:298px;
+    top:0;
+    width:260px;
+    background:white;
+    border:1px solid #ddd;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.category-item:hover .submenu{
+    display:block;
+}
+
+.submenu-arrow{
+    float:right;
+}
+
+
+/******** HOMEPAGE ********/
+
+.homepage-hero{
+    padding:70px 40px 90px;
+}
+
+.homepage-hero-content{
+    text-align:center;
+}
+
+.homepage-hero h1{
+    font-size:42px;
+    margin-bottom:30px;
+    color:#111827;
+}
+
+.homepage-search{
+    max-width:980px;
+    margin:0 auto;
+    background:white;
+    border:1px solid #ddd;
+    box-shadow:0 6px 22px rgba(0,0,0,0.08);
+    border-radius:14px;
+    padding:18px;
+    display:flex;
+    align-items:end;
+    gap:12px;
+}
+
+.search-field{
+    flex:1;
+    text-align:left;
+}
+
+.search-field.small{
+    max-width:120px;
+}
+
+.search-field label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+    color:#374151;
+}
+
+.search-field input{
+    width:100%;
+    height:42px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    padding:0 10px;
+    font-size:15px;
+}
+
+.homepage-search button{
+    height:42px;
+    padding:0 24px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.homepage-search button:hover{
+    background:#1d4ed8;
+}
+
+
+/******** FOOTER ********/
+
+.footer{
+    width:1280px;
+    margin:0 auto;
+    background:white;
+    border-top:1px solid #ddd;
+    text-align:center;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:8px;
+}
+
+.footer-links a{
+    color:#374151;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    text-decoration:underline;
+}
+
+/******** VYHLADAVANIE ********/
+
+.search-results-page{
+    padding:40px;
+}
+
+.search-results-page h1{
+    font-size:34px;
+    margin-bottom:22px;
+    color:#111827;
+}
+
+.search-filter-form{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.search-filter-form input,
+.search-filter-form select{
+    height:38px;
+    padding:0 10px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+}
+
+.search-filter-form button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:0 18px;
+    cursor:pointer;
+}
+
+.search-results-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.search-result-card{
+    display:block;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:18px;
+    color:#111827;
+    text-decoration:none;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.search-result-card h2{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.search-result-card p{
+    margin:6px 0;
+}
+
+.no-results{
+    padding:20px;
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+}
+
+/******** KATEGORIE ********/
+
+.category-page{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:30px;
+    padding:35px 40px;
+}
+
+.side-filter{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:20px;
+    height:max-content;
+}
+
+.side-filter h2{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.subcategories{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.subcategories a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.ads-list h1{
+    font-size:34px;
+    margin-bottom:24px;
+    color:#111827;
+}
+
+.ad-item{
+    display:flex;
+    gap:18px;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.ad-icon{
+    width:54px;
+    height:54px;
+    border-radius:12px;
+    background:#eef2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.ad-title{
+    display:block;
+    font-size:22px;
+    font-weight:bold;
+    color:#111827;
+    text-decoration:none;
+    margin-bottom:8px;
+}
+
+.ad-title:hover{
+    color:#2563eb;
+}
+
+.ad-content p{
+    margin:7px 0;
+    color:#374151;
+    line-height:1.4;
+}
+
+.ad-content strong{
+    display:block;
+    margin:8px 0;
+    color:#111827;
+}
+
+/******** MOJE INZERÁTY ********/
+
+.my-ads-page{
+    padding:40px;
+}
+
+.my-ads-page h1{
+    margin-bottom:30px;
+    color:#111827;
+}
+
+.my-ad-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.my-ad-card h3{
+    margin-bottom:10px;
+}
+
+.my-ad-card p{
+    margin-bottom:6px;
+}
+
+.my-ad-card a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/******** DETAIL INZERÁTU ********/
+
+.detail-page{
+    display:grid;
+    grid-template-columns:1fr 300px;
+    gap:30px;
+    padding:40px;
+}
+
+.detail-main{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.detail-actions{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.detail-actions button{
+    border:1px solid #d1d5db;
+    background:#f9fafb;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.detail-main h1{
+    font-size:34px;
+    margin-bottom:12px;
+    color:#111827;
+}
+
+.detail-location,
+.detail-category,
+.detail-date{
+    margin:7px 0;
+    color:#374151;
+}
+
+.detail-main h2{
+    margin:18px 0;
+    color:#111827;
+}
+
+.detail-main h3{
+    margin-top:24px;
+    margin-bottom:10px;
+}
+
+.detail-rating,
+.no-rating{
+    margin:12px 0;
+    font-weight:bold;
+}
+
+.contact-section{
+    margin:25px 0;
+}
+
+.contact-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.provider-box{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:22px;
+    height:max-content;
+}
+
+.provider-box h3{
+    margin-bottom:12px;
+}
+
+.provider-box p{
+    margin:8px 0;
+}
+
+.other-ad{
+    margin:10px 0;
+}
+
+.other-ad a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.review{
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:15px;
+    margin-top:12px;
+    background:#f9fafb;
+}
+
+.discussion-form textarea{
+    width:100%;
+    min-height:100px;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+/******** PRIDANIE / KONTAKT FORM ********/
+
+.add-ad-page{
+    padding:40px;
+}
+
+.add-ad-page h1{
+    font-size:34px;
+    margin-bottom:20px;
+    color:#111827;
+}
+
+.add-ad-form{
+    max-width:650px;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:28px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.add-ad-form label{
+    display:block;
+    font-weight:bold;
+    margin-top:16px;
+    margin-bottom:7px;
+}
+
+.add-ad-form label span{
+    color:red;
+}
+
+.add-ad-form input,
+.add-ad-form select,
+.add-ad-form textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    font-size:15px;
+}
+
+.add-ad-form textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.add-ad-form p{
+    margin-bottom:8px;
+}
+
+.price-checkbox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:12px;
+}
+
+.price-checkbox input{
+    width:auto;
+}
