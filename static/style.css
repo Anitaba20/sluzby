@@ -34,7 +34,6 @@ body{
         #f2fbfc 0%,
         #ffffff 100%
     );
-    min-height:calc(100vh - 140px);
 }
 
 
@@ -467,7 +466,8 @@ body{
 /******** HOMEPAGE ********/
 
 .homepage-hero{
-    padding:70px 40px 90px;
+    height:651px;
+    padding:70px 40px 40px;
 }
 
 .homepage-hero-content{
