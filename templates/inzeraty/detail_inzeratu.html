@@ -48,21 +48,19 @@
 
                 {% if inzerat.cena_dohodou %}
                     dohodou
+
+                {% elif inzerat.cena %}
+
+                    {% if inzerat.cena == inzerat.cena|int %}
+                        {{ inzerat.cena|int }} €
+                    {% else %}
+                        {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                    {% endif %}
+
                 {% else %}
-                    {{ inzerat.cena|int }} €
+                    dohodou
                 {% endif %}
             </h2>
-
-            {% if priemer_hodnotenia %}
-                <p class="detail-rating">
-                    ⭐ {{ priemer_hodnotenia }} / 5
-                    ({{ pocet_hodnoteni }} hodnotení)
-                </p>
-            {% else %}
-                <p class="no-rating">
-                    ⭐ Zatiaľ bez hodnotenia
-                </p>
-            {% endif %}
 
             <h3>Popis služby</h3>
 
@@ -77,76 +75,9 @@
                 </a>
             </div>
 
-            {% if session.get("user_id") and session.get("user_id") != inzerat.user_id %}
-
-                <section class="rating-form-section">
-
-                    <h3>Pridať hodnotenie</h3>
-
-                    <form method="POST"
-                          action="{{ url_for('pridat_hodnotenie', inzerat_id=inzerat.id) }}"
-                          class="rating-form">
-
-                        <div class="star-rating">
-
-                            <input type="radio" id="star5" name="hodnotenie" value="5" required>
-                            <label for="star5">★</label>
-
-                            <input type="radio" id="star4" name="hodnotenie" value="4">
-                            <label for="star4">★</label>
-
-                            <input type="radio" id="star3" name="hodnotenie" value="3">
-                            <label for="star3">★</label>
-
-                            <input type="radio" id="star2" name="hodnotenie" value="2">
-                            <label for="star2">★</label>
-
-                            <input type="radio" id="star1" name="hodnotenie" value="1">
-                            <label for="star1">★</label>
-
-                        </div>
-
-                        <button type="submit" class="register-btn">
-                            Odoslať hodnotenie
-                        </button>
-
-                    </form>
-
-                </section>
-
-            {% endif %}
-
             <section class="reviews">
 
-                {% if hodnotenia %}
-
-                    {% for hodnotenie, autor in hodnotenia %}
-
-                        <div class="review">
-
-                            <p>
-                                <strong>{{ autor.username }}</strong>
-                            </p>
-
-                            <p>
-                                ⭐ {{ hodnotenie.hodnotenie }} / 5
-                            </p>
-
-                            <p>
-                                {{ hodnotenie.datum.strftime("%d. %m. %Y") }}
-                            </p>
-
-                        </div>
-
-                    {% endfor %}
-
-                {% endif %}
-
-            </section>
-
-            <section class="reviews">
-
-                {% if session.get("user_id") and session.get("user_id") != inzerat.user_id %}
+                {% if session.get("user_id") and session.get("user_id")|int != inzerat.user_id %}
 
                     <form method="POST"
                           action="{{ url_for('pridat_recenzie', inzerat_id=inzerat.id) }}"
@@ -250,15 +181,6 @@
                 </p>
             {% endif %}
 
-            {% if priemer_hodnotenia %}
-                <p>
-                    ⭐ {{ priemer_hodnotenia }} / 5
-                    ({{ pocet_hodnoteni }} hodnotení)
-                </p>
-            {% else %}
-                <p>⭐ Zatiaľ bez hodnotenia</p>
-            {% endif %}
-
             <p>
                 Počet inzerátov:
                 {{ pocet_inzeratov }}
@@ -291,3 +213,4 @@
 </div>
 
 {% endblock %}
+
