@@ -1,8 +1,6 @@
 {% extends "layout/base.html" %}
 
-{% block title %}
-Výsledky vyhľadávania
-{% endblock %}
+{% block title %}Výsledky vyhľadávania{% endblock %}
 
 {% block content %}
 
@@ -12,75 +10,81 @@ Výsledky vyhľadávania
 
         <h1>Výsledky vyhľadávania</h1>
 
-        <form class="search-filter-form"
+        <form class="homepage-search"
               method="GET"
               action="{{ url_for('vyhladavanie') }}">
 
-            <input type="hidden" name="q" value="{{ q }}">
-            <input type="hidden" name="location" value="{{ location }}">
-            <input type="hidden" name="psc" value="{{ psc }}">
+            <div class="search-field">
+                <label>Čo hľadáte?</label>
+                <input type="text"
+                       name="q"
+                       value="{{ q }}"
+                       placeholder="elektrikár, maliar, upratovanie">
+            </div>
 
-            <input type="number"
-                   name="price_min"
-                   value="{{ price_min }}"
-                   placeholder="Cena od">
+            <div class="search-field">
+                <label>Lokalita alebo PSČ</label>
+                <input type="text"
+                       name="location"
+                       value="{{ location }}"
+                       placeholder="Bratislava">
+            </div>
 
-            <input type="number"
-                   name="price_max"
-                   value="{{ price_max }}"
-                   placeholder="Cena do">
+            <div class="search-field small">
+                <label>Cena od</label>
+                <input type="number"
+                       name="price_min"
+                       value="{{ price_min }}"
+                       placeholder="0">
+            </div>
 
-            <select name="date_filter">
-                <option value="">Dátum pridania</option>
-                <option value="today" {% if date_filter == "today" %}selected{% endif %}>Dnes</option>
-                <option value="7" {% if date_filter == "7" %}selected{% endif %}>Posledných 7 dní</option>
-                <option value="30" {% if date_filter == "30" %}selected{% endif %}>Posledných 30 dní</option>
-            </select>
+            <div class="search-field small">
+                <label>Cena do</label>
+                <input type="number"
+                       name="price_max"
+                       value="{{ price_max }}"
+                       placeholder="100">
+            </div>
 
-            <button type="submit">
-                Filtrovať
-            </button>
+            <button type="submit">Filtrovať</button>
 
         </form>
 
-        {% if inzeraty %}
+        {% if vysledky %}
+
+            <p class="search-count">
+                Počet nájdených služieb: {{ vysledky|length }}
+            </p>
 
             <div class="search-results-list">
 
-                {% for inzerat in inzeraty %}
+                {% for inzerat in vysledky %}
 
                     <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
                        class="search-result-card">
 
                         <h2>{{ inzerat.nazov }}</h2>
 
-                        <div class="search-result-meta">
-                            📍 {{ inzerat.lokalita }}
-
+                        <p>
+                            {{ inzerat.lokalita }}
                             {% if inzerat.psc %}
-                                | PSČ: {{ inzerat.psc }}
+                                | {{ inzerat.psc }}
                             {% endif %}
-                        </div>
-
-                        <p>
-                            Kategória: {{ inzerat.kategoria }}
                         </p>
 
                         <p>
-                            {{ inzerat.popis[:180] }}...
+                            {{ inzerat.kategoria }}
+                            {% if inzerat.podkategoria %}
+                                | {{ inzerat.podkategoria }}
+                            {% endif %}
                         </p>
 
-                        <strong>
-                            Cena:
+                        <p>
                             {% if inzerat.cena_dohodou %}
-                                dohodou
+                                Cena dohodou
                             {% else %}
-                                {{ inzerat.cena }} €
+                                {{ "%.0f"|format(inzerat.cena) }} €
                             {% endif %}
-                        </strong>
-
-                        <p class="search-result-date">
-                            Pridané: {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
                         </p>
 
                     </a>
@@ -91,9 +95,9 @@ Výsledky vyhľadávania
 
         {% else %}
 
-            <div class="no-results">
+            <p class="empty-results">
                 Neboli nájdené žiadne služby.
-            </div>
+            </p>
 
         {% endif %}
 

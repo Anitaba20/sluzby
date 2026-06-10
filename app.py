@@ -602,6 +602,7 @@ def upravit_inzerat(inzerat_id):
         podkategoria = request.form.get("subcategory", "").strip()
         cena = request.form.get("price", "").strip()
         lokalita = request.form.get("location", "").strip()
+        psc = request.form.get("psc", "").strip()
         popis = request.form.get("description", "").strip()
 
         if not nazov or not kategoria or not lokalita or not popis:
@@ -612,6 +613,7 @@ def upravit_inzerat(inzerat_id):
             inzerat.podkategoria = podkategoria
             inzerat.cena = float(cena) if cena else None
             inzerat.lokalita = lokalita
+            inzerat.psc = psc
             inzerat.popis = popis
 
             foto1 = uloz_obrazok(request.files.get("photo"))
@@ -620,17 +622,27 @@ def upravit_inzerat(inzerat_id):
 
             if foto1:
                 inzerat.obrazok = foto1
+
             if foto2:
                 inzerat.obrazok_2 = foto2
+
             if foto3:
                 inzerat.obrazok_3 = foto3
 
             db.session.commit()
 
-            return redirect(url_for("detail_inzeratu", inzerat_id=inzerat.id))
+            return redirect(
+                url_for(
+                    "detail_inzeratu",
+                    inzerat_id=inzerat.id
+                )
+            )
 
-    return render_template("inzeraty/upravit_inzerat.html", inzerat=inzerat, chyba=chyba)
-
+    return render_template(
+        "inzeraty/upravit_inzerat.html",
+        inzerat=inzerat,
+        chyba=chyba
+    )
 
 @app.route("/zmazat-inzerat/<int:inzerat_id>", methods=["POST"])
 def zmazat_inzerat(inzerat_id):
@@ -850,32 +862,34 @@ def vyhladavanie():
     query = Inzerat.query
 
     if q:
+        hladane = f"%{q}%"
         query = query.filter(
             db.or_(
-                Inzerat.nazov.ilike(f"%{q}%"),
-                Inzerat.popis.ilike(f"%{q}%"),
-                Inzerat.kategoria.ilike(f"%{q}%"),
-                Inzerat.podkategoria.ilike(f"%{q}%")
+                Inzerat.nazov.ilike(hladane),
+                Inzerat.popis.ilike(hladane),
+                Inzerat.kategoria.ilike(hladane),
+                Inzerat.podkategoria.ilike(hladane)
             )
         )
 
     if location:
+        hladana_lokalita = f"%{location}%"
         query = query.filter(
             db.or_(
-                Inzerat.lokalita.ilike(f"%{location}%"),
-                Inzerat.psc.ilike(f"%{location}%")
+                Inzerat.lokalita.ilike(hladana_lokalita),
+                Inzerat.psc.ilike(hladana_lokalita)
             )
         )
 
     if price_min:
+        query = query.filter(Inzerat.cena_dohodou == False)
         query = query.filter(Inzerat.cena >= float(price_min))
 
     if price_max:
+        query = query.filter(Inzerat.cena_dohodou == False)
         query = query.filter(Inzerat.cena <= float(price_max))
 
-    vysledky = query.order_by(
-        Inzerat.datum_pridania.desc()
-    ).all()
+    vysledky = query.order_by(Inzerat.datum_pridania.desc()).all()
 
     return render_template(
         "vyhladavanie.html",

@@ -16,7 +16,11 @@
 
                 <div class="my-ad-card">
 
-                    <h3>{{ inzerat.nazov }}</h3>
+                    <h3>
+                        <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}">
+                            {{ inzerat.nazov }}
+                        </a>
+                    </h3>
 
                     <p>
                         Kategória:

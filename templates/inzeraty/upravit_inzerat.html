@@ -54,6 +54,11 @@
                    name="location"
                    value="{{ inzerat.lokalita }}">
 
+            <label>PSČ</label>
+            <input type="text"
+                   name="psc"
+                   value="{{ inzerat.psc or '' }}">
+
             <label>Popis služby <span>*</span></label>
             <textarea name="description">{{ inzerat.popis }}</textarea>
 
