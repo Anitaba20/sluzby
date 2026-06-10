@@ -75,6 +75,45 @@
                 </a>
             </div>
 
+            {% if session.get("user_id") and session.get("user_id")|int != inzerat.user_id %}
+
+                <section class="rating-form-section">
+
+                    <h3>Ohodnoťte poskytovateľa</h3>
+
+                    <form method="POST"
+                          action="{{ url_for('pridat_hodnotenie', inzerat_id=inzerat.id) }}"
+                          class="rating-form">
+
+                        <div class="star-rating">
+
+                            <input type="radio" id="star5" name="hodnotenie" value="5" required>
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="hodnotenie" value="4">
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="hodnotenie" value="3">
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="hodnotenie" value="2">
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="hodnotenie" value="1">
+                            <label for="star1">★</label>
+
+                        </div>
+
+                        <button type="submit" class="register-btn">
+                            Odoslať hodnotenie
+                        </button>
+
+                    </form>
+
+                </section>
+
+            {% endif %}
+
             <section class="reviews">
 
                 {% if session.get("user_id") and session.get("user_id")|int != inzerat.user_id %}
@@ -181,6 +220,15 @@
                 </p>
             {% endif %}
 
+            {% if priemer_hodnotenia %}
+                <p>
+                    ⭐ {{ priemer_hodnotenia }} / 5
+                    ({{ pocet_hodnoteni }} hodnotení)
+                </p>
+            {% else %}
+                <p>⭐ Zatiaľ bez hodnotenia</p>
+            {% endif %}
+
             <p>
                 Počet inzerátov:
                 {{ pocet_inzeratov }}
@@ -213,4 +261,3 @@
 </div>
 
 {% endblock %}
-

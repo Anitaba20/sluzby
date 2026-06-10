@@ -92,7 +92,8 @@ class Hodnotenie(db.Model):
     hodnotenie = db.Column(db.Integer, nullable=False)
     datum = db.Column(db.DateTime, default=datetime.utcnow)
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    autor_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    hodnoteny_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     inzerat_id = db.Column(db.Integer, db.ForeignKey("inzeraty.id"), nullable=False)
 
 
@@ -103,8 +104,17 @@ class Recenzia(db.Model):
     text = db.Column(db.Text, nullable=False)
     datum = db.Column(db.DateTime, default=datetime.utcnow)
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    inzerat_id = db.Column(db.Integer, db.ForeignKey("inzeraty.id"), nullable=False)
+    autor_user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False
+    )
+
+    inzerat_id = db.Column(
+        db.Integer,
+        db.ForeignKey("inzeraty.id"),
+        nullable=False
+    )
 
 
 with app.app_context():
@@ -537,8 +547,9 @@ def detail_inzeratu(inzerat_id):
         priemer_hodnotenia = None
 
     hodnotenia = []
+
     for hodnotenie in hodnotenia_db:
-        autor = User.query.get(hodnotenie.user_id)
+        autor = User.query.get(hodnotenie.autor_user_id)
         hodnotenia.append((hodnotenie, autor))
 
     recenzie_db = Recenzia.query.filter_by(
@@ -548,8 +559,9 @@ def detail_inzeratu(inzerat_id):
     ).all()
 
     recenzie = []
+
     for recenzia in recenzie_db:
-        autor = User.query.get(recenzia.user_id)
+        autor = User.query.get(recenzia.autor_user_id)
         recenzie.append((recenzia, autor))
 
     dalsie_inzeraty = Inzerat.query.filter(
@@ -698,21 +710,40 @@ def pridat_hodnotenie(inzerat_id):
         return redirect(url_for("prihlasenie"))
 
     inzerat = Inzerat.query.get_or_404(inzerat_id)
+    autor_user_id = session["user_id"]
 
-    if inzerat.user_id == session["user_id"]:
+    if inzerat.user_id == autor_user_id:
         return redirect(url_for("detail_inzeratu", inzerat_id=inzerat.id))
 
     hodnota = request.form.get("hodnotenie")
 
-    if hodnota:
-        nove = Hodnotenie(
-            hodnotenie=int(hodnota),
-            user_id=session["user_id"],
+    if not hodnota:
+        return redirect(url_for("detail_inzeratu", inzerat_id=inzerat.id))
+
+    hodnota = int(hodnota)
+
+    if hodnota < 1 or hodnota > 5:
+        return redirect(url_for("detail_inzeratu", inzerat_id=inzerat.id))
+
+    existujuce_hodnotenie = Hodnotenie.query.filter_by(
+        autor_user_id=autor_user_id,
+        inzerat_id=inzerat.id
+    ).first()
+
+    if existujuce_hodnotenie:
+        existujuce_hodnotenie.hodnotenie = hodnota
+        existujuce_hodnotenie.datum = datetime.utcnow()
+    else:
+        nove_hodnotenie = Hodnotenie(
+            hodnotenie=hodnota,
+            autor_user_id=autor_user_id,
+            hodnoteny_user_id=inzerat.user_id,
             inzerat_id=inzerat.id
         )
 
-        db.session.add(nove)
-        db.session.commit()
+        db.session.add(nove_hodnotenie)
+
+    db.session.commit()
 
     return redirect(url_for("detail_inzeratu", inzerat_id=inzerat.id))
 
@@ -728,7 +759,7 @@ def pridat_recenzie(inzerat_id):
     if text and inzerat.user_id != session["user_id"]:
         nova = Recenzia(
             text=text,
-            user_id=session["user_id"],
+            autor_user_id=session["user_id"],
             inzerat_id=inzerat.id
         )
 
@@ -822,12 +853,19 @@ def vyhladavanie():
         query = query.filter(
             db.or_(
                 Inzerat.nazov.ilike(f"%{q}%"),
-                Inzerat.popis.ilike(f"%{q}%")
+                Inzerat.popis.ilike(f"%{q}%"),
+                Inzerat.kategoria.ilike(f"%{q}%"),
+                Inzerat.podkategoria.ilike(f"%{q}%")
             )
         )
 
     if location:
-        query = query.filter(Inzerat.lokalita.ilike(f"%{location}%"))
+        query = query.filter(
+            db.or_(
+                Inzerat.lokalita.ilike(f"%{location}%"),
+                Inzerat.psc.ilike(f"%{location}%")
+            )
+        )
 
     if price_min:
         query = query.filter(Inzerat.cena >= float(price_min))
@@ -835,15 +873,18 @@ def vyhladavanie():
     if price_max:
         query = query.filter(Inzerat.cena <= float(price_max))
 
-    vysledky = query.order_by(Inzerat.datum_pridania.desc()).all()
+    vysledky = query.order_by(
+        Inzerat.datum_pridania.desc()
+    ).all()
 
     return render_template(
         "vyhladavanie.html",
         vysledky=vysledky,
         q=q,
-        location=location
+        location=location,
+        price_min=price_min,
+        price_max=price_max
     )
-
 
 @app.route("/o-nas")
 def o_nas():
@@ -863,7 +904,6 @@ def podmienky_pouzivania():
 @app.route("/ochrana-osobnych-udajov")
 def ochrana_osobnych_udajov():
     return render_template("stranky/ochrana_osobnych_udajov.html")
-
 
 if __name__ == "__main__":
     app.run(debug=True)

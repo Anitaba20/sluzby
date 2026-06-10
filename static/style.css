@@ -863,6 +863,39 @@ body{
     margin-top:10px;
 }
 
+.rating-form-section{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.star-rating{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:flex-end;
+    gap:4px;
+    margin:12px 0 18px;
+}
+
+.star-rating input{
+    display:none;
+}
+
+.star-rating label{
+    font-size:34px;
+    color:#d1d5db;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label{
+    color:#facc15;
+}
+
+.star-rating input:checked ~ label{
+    color:#facc15;
+}
+
 /******** PRIDANIE / KONTAKT FORM ********/
 
 /******** PRIDANIE / KONTAKT FORM ********/
