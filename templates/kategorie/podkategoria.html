@@ -35,6 +35,25 @@
                         {{ inzerat.lokalita }}
                     </p>
 
+                    <p>
+                        Cena:
+
+                        {% if inzerat.cena_dohodou %}
+                            dohodou
+
+                        {% elif inzerat.cena %}
+
+                            {% if inzerat.cena == inzerat.cena|int %}
+                                {{ inzerat.cena|int }} €
+                            {% else %}
+                                {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                            {% endif %}
+
+                        {% else %}
+                            dohodou
+                        {% endif %}
+                    </p>
+
                     <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}">
                         Detail inzerátu
                     </a>

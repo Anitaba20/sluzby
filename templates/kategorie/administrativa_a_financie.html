@@ -50,7 +50,13 @@
                             {% if inzerat.cena_dohodou %}
                                 dohodou
                             {% elif inzerat.cena %}
-                                {{ inzerat.cena|int }} €
+
+                                {% if inzerat.cena == inzerat.cena|int %}
+                                    {{ inzerat.cena|int }} €
+                                {% else %}
+                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                                {% endif %}
+
                             {% else %}
                                 dohodou
                             {% endif %}
