@@ -13,33 +13,38 @@
             <h1>Zabudnuté heslo</h1>
 
             {% if chyba %}
-                <p class="error-message">{{ chyba }}</p>
+                <p class="error-message">
+                    {{ chyba }}
+                </p>
             {% endif %}
 
             {% if sprava %}
-                <p class="success-message">{{ sprava }}</p>
+                <p class="success-message">
+                    {{ sprava }}
+                </p>
             {% endif %}
 
-            {% if reset_link %}
-                <div class="reset-test-link">
-                    <p>Testovací resetovací odkaz:</p>
-                    <a href="{{ reset_link }}">{{ reset_link }}</a>
-                </div>
-            {% endif %}
+            <label>
+                E-mail <span>*</span>
+            </label>
 
-            <label>E-mail <span>*</span></label>
             <div class="input-box">
                 <span>✉️</span>
-                <input type="email" name="email" required>
+                <input type="email"
+                       name="email"
+                       required>
             </div>
 
-            <button type="submit" class="login-btn">
+            <button type="submit"
+                    class="login-btn">
                 Odoslať reset hesla
             </button>
 
             <p class="register-link">
                 Späť na
-                <a href="{{ url_for('prihlasenie') }}">prihlásenie</a>
+                <a href="{{ url_for('prihlasenie') }}">
+                    prihlásenie
+                </a>
             </p>
 
         </form>

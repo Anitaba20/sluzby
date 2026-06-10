@@ -1,0 +1,61 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Moje konto{% endblock %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="my-account-page">
+
+        <h1>Moje konto</h1>
+
+        <div class="account-card">
+
+            <p>
+                <strong>Používateľské meno:</strong>
+                {{ user.username }}
+            </p>
+
+            <p>
+                <strong>E-mail:</strong>
+                {{ user.email }}
+            </p>
+
+            <p>
+                <strong>Počet inzerátov:</strong>
+                {{ pocet_inzeratov }}
+            </p>
+
+            <div class="account-links">
+
+                <a href="{{ url_for('moje_inzeraty') }}"
+                   class="account-btn">
+                    Moje inzeráty
+                </a>
+
+                <a href="{{ url_for('zmenit_heslo') }}"
+                   class="account-btn">
+                    Zmeniť heslo
+                </a>
+
+                <form method="POST"
+                      action="{{ url_for('zrusit_konto') }}"
+                      onsubmit="return confirm('Naozaj chcete zrušiť konto? Táto akcia je nevratná.');">
+
+                    <button type="submit"
+                            class="delete-account-btn">
+                        Zrušiť konto
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

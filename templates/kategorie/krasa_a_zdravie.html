@@ -13,12 +13,12 @@
             <h2>Podkategórie</h2>
 
             <div class="subcategories">
-                <a href="#">Kaderníctvo</a>
-                <a href="#">Kozmetika</a>
-                <a href="#">Manikúra a pedikúra</a>
-                <a href="#">Masáže</a>
-                <a href="#">Tetovanie</a>
-                <a href="#">Iné</a>
+                <a href="{{ url_for('podkategoria', nazov='Kaderníctvo') }}">Kaderníctvo</a>
+                <a href="{{ url_for('podkategoria', nazov='Kozmetika') }}">Kozmetika</a>
+                <a href="{{ url_for('podkategoria', nazov='Manikúra a pedikúra') }}">Manikúra a pedikúra</a>
+                <a href="{{ url_for('podkategoria', nazov='Masáže') }}">Masáže</a>
+                <a href="{{ url_for('podkategoria', nazov='Tetovanie') }}">Tetovanie</a>
+                <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
             </div>
 
         </div>
@@ -48,8 +48,10 @@
 
                         <strong>
                             Cena:
-                            {% if inzerat.cena %}
-                                {{ inzerat.cena }}
+                            {% if inzerat.cena_dohodou %}
+                                dohodou
+                            {% elif inzerat.cena %}
+                                {{ inzerat.cena|int }} €
                             {% else %}
                                 dohodou
                             {% endif %}

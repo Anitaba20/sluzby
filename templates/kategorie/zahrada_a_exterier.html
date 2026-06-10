@@ -13,11 +13,11 @@
             <h2>Podkategórie</h2>
 
             <div class="subcategories">
-                <a href="#">Kosenie trávnikov</a>
-                <a href="#">Údržba záhrad</a>
-                <a href="#">Živé ploty</a>
-                <a href="#">Terénne úpravy</a>
-                <a href="#">Iné</a>
+                <a href="{{ url_for('podkategoria', nazov='Kosenie trávnikov') }}">Kosenie trávnikov</a>
+                <a href="{{ url_for('podkategoria', nazov='Údržba záhrad') }}">Údržba záhrad</a>
+                <a href="{{ url_for('podkategoria', nazov='Živé ploty') }}">Živé ploty</a>
+                <a href="{{ url_for('podkategoria', nazov='Terénne úpravy') }}">Terénne úpravy</a>
+                <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
             </div>
 
         </div>
@@ -47,8 +47,10 @@
 
                         <strong>
                             Cena:
-                            {% if inzerat.cena %}
-                                {{ inzerat.cena }}
+                            {% if inzerat.cena_dohodou %}
+                                dohodou
+                            {% elif inzerat.cena %}
+                                {{ inzerat.cena|int }} €
                             {% else %}
                                 dohodou
                             {% endif %}

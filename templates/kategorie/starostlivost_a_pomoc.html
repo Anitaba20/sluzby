@@ -13,11 +13,11 @@
             <h2>Podkategórie</h2>
 
             <div class="subcategories">
-                <a href="#">Opatrovanie detí</a>
-                <a href="#">Opatrovanie seniorov</a>
-                <a href="#">Upratovanie</a>
-                <a href="#">Pomoc v domácnosti</a>
-                <a href="#">Iné</a>
+                <a href="{{ url_for('podkategoria', nazov='Opatrovanie detí') }}">Opatrovanie detí</a>
+                <a href="{{ url_for('podkategoria', nazov='Opatrovanie seniorov') }}">Opatrovanie seniorov</a>
+                <a href="{{ url_for('podkategoria', nazov='Upratovanie') }}">Upratovanie</a>
+                <a href="{{ url_for('podkategoria', nazov='Pomoc v domácnosti') }}">Pomoc v domácnosti</a>
+                <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
             </div>
 
         </div>
@@ -47,8 +47,10 @@
 
                         <strong>
                             Cena:
-                            {% if inzerat.cena %}
-                                {{ inzerat.cena }}
+                            {% if inzerat.cena_dohodou %}
+                                dohodou
+                            {% elif inzerat.cena %}
+                                {{ inzerat.cena|int }} €
                             {% else %}
                                 dohodou
                             {% endif %}

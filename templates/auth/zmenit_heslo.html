@@ -1,0 +1,120 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Zmeniť heslo{% endblock %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="login-wrapper">
+
+        <form class="login-card" method="POST">
+
+            <h1>Zmeniť heslo</h1>
+
+            {% if chyba %}
+                <p class="error-message">
+                    {{ chyba }}
+                </p>
+            {% endif %}
+
+            {% if sprava %}
+                <p class="success-message">
+                    {{ sprava }}
+                </p>
+            {% endif %}
+
+            <label>Aktuálne heslo <span>*</span></label>
+
+            <div class="input-box">
+
+                <span>🔒</span>
+
+                <input type="password"
+                       id="stare_heslo"
+                       name="stare_heslo"
+                       required>
+
+                <i class="fa-solid fa-eye toggle-password"
+                   onclick="togglePassword('stare_heslo', this)">
+                </i>
+
+            </div>
+
+            <label>Nové heslo <span>*</span></label>
+
+            <div class="input-box">
+
+                <span>🔒</span>
+
+                <input type="password"
+                       id="nove_heslo"
+                       name="nove_heslo"
+                       required>
+
+                <i class="fa-solid fa-eye toggle-password"
+                   onclick="togglePassword('nove_heslo', this)">
+                </i>
+
+            </div>
+
+            <label>Zopakuj nové heslo <span>*</span></label>
+
+            <div class="input-box">
+
+                <span>🔒</span>
+
+                <input type="password"
+                       id="nove_heslo2"
+                       name="nove_heslo2"
+                       required>
+
+                <i class="fa-solid fa-eye toggle-password"
+                   onclick="togglePassword('nove_heslo2', this)">
+                </i>
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                Zmeniť heslo
+            </button>
+
+            <p class="register-link">
+                Späť na
+                <a href="{{ url_for('moje_konto') }}">
+                    moje konto
+                </a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function togglePassword(id, icon) {
+
+    const input = document.getElementById(id);
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+
+    } else {
+
+        input.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+
+    }
+}
+
+</script>
+
+{% endblock %}

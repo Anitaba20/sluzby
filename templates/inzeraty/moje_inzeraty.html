@@ -40,21 +40,25 @@
                         {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
                     </p>
 
-                    <div class="my-ad-actions">
+                    <div class="my-ads-actions">
 
-                        <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}">
+                        <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
+                           class="detail-link">
                             Detail
                         </a>
 
-                        <a href="{{ url_for('upravit_inzerat', inzerat_id=inzerat.id) }}">
+                        <a href="{{ url_for('upravit_inzerat', inzerat_id=inzerat.id) }}"
+                           class="edit-btn">
                             Upraviť
                         </a>
 
                         <form method="POST"
                               action="{{ url_for('zmazat_inzerat', inzerat_id=inzerat.id) }}"
+                              style="display:inline;"
                               onsubmit="return confirm('Naozaj chcete zmazať tento inzerát?');">
 
-                            <button type="submit" class="delete-link">
+                            <button type="submit"
+                                    class="delete-btn">
                                 Zmazať
                             </button>
 

@@ -4,23 +4,18 @@
 
         <div class="header-left">
 
-           <div class="logo-wrapper">
+            <div class="logo-wrapper">
 
-
-            <a href="{{ url_for('index') }}" class="logo">
-
-                <img src="{{ url_for('static', filename='logo2.png') }}"
-            alt="služby.sk">
-
-            </a>
+                <a href="{{ url_for('index') }}" class="logo">
+                    <img src="{{ url_for('static', filename='logo2.png') }}"
+                         alt="služby.sk">
+                </a>
 
                 <div class="logo-subtitle">
                     Inzercia služieb
                 </div>
 
-
-           </div>
-
+            </div>
 
             <div class="category-menu">
 
@@ -168,6 +163,13 @@
             {% if session.get("user_id") %}
 
                 <span>{{ session.get("user_name") }}</span>
+
+                <span>|</span>
+
+                <a href="{{ url_for('moje_konto') }}">
+                    Moje konto
+                </a>
+
                 <span>|</span>
 
                 <a href="{{ url_for('moje_inzeraty') }}">

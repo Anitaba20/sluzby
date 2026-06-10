@@ -13,11 +13,11 @@
             <h2>Podkategórie</h2>
 
             <div class="subcategories">
-                <a href="#">Účtovníctvo</a>
-                <a href="#">Mzdy a personalistika</a>
-                <a href="#">Administratívna pomoc</a>
-                <a href="#">Daňové priznania</a>
-                <a href="#">Iné</a>
+                <a href="{{ url_for('podkategoria', nazov='Účtovníctvo') }}">Účtovníctvo</a>
+                <a href="{{ url_for('podkategoria', nazov='Mzdy a personalistika') }}">Mzdy a personalistika</a>
+                <a href="{{ url_for('podkategoria', nazov='Administratívna pomoc') }}">Administratívna pomoc</a>
+                <a href="{{ url_for('podkategoria', nazov='Daňové priznania') }}">Daňové priznania</a>
+                <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
             </div>
 
         </div>
@@ -47,9 +47,10 @@
 
                         <strong>
                             Cena:
-
-                            {% if inzerat.cena %}
-                                {{ inzerat.cena }}
+                            {% if inzerat.cena_dohodou %}
+                                dohodou
+                            {% elif inzerat.cena %}
+                                {{ inzerat.cena|int }} €
                             {% else %}
                                 dohodou
                             {% endif %}

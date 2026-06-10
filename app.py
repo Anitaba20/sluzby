@@ -160,22 +160,26 @@ def over_reset_token(token):
 
 
 def posli_reset_email(email, reset_link):
+
     sprava = Message(
-        subject="Reset hesla - služby.sk",
+        subject="Reset hesla - sluzby.sk",
         recipients=[email]
     )
 
     sprava.body = f"""
 Dobrý deň,
 
-požiadali ste o reset hesla na stránke služby.sk.
+požiadali ste o reset hesla na stránke sluzby.sk.
 
 Kliknite na tento odkaz:
+
 {reset_link}
 
 Odkaz je platný 30 minút.
 
-služby.sk
+Ak ste o zmenu hesla nepožiadali, tento e-mail ignorujte.
+
+Tím sluzby.sk
 """
 
     mail.send(sprava)
@@ -285,36 +289,53 @@ def odhlasenie():
     session.clear()
     return redirect(url_for("index"))
 
-
 @app.route("/zabudnute-heslo", methods=["GET", "POST"])
 def zabudnute_heslo():
+
     chyba = ""
     sprava = ""
-    reset_link = ""
 
     if request.method == "POST":
+
         email = request.form.get("email", "").strip().lower()
+
         user = User.query.filter_by(email=email).first()
 
         if not user:
+
             chyba = "Používateľ s týmto e-mailom neexistuje."
+
         else:
+
             token = vytvor_reset_token(user.id)
-            reset_link = url_for("reset_hesla", token=token, _external=True)
+
+            reset_link = url_for(
+                "reset_hesla",
+                token=token,
+                _external=True
+            )
 
             try:
-                posli_reset_email(email, reset_link)
+
+                posli_reset_email(
+                    email,
+                    reset_link
+                )
+
                 sprava = "Resetovací odkaz bol odoslaný na váš e-mail."
+
             except Exception:
-                sprava = "Testovací resetovací odkaz je zobrazený nižšie."
+
+                chyba = (
+                    "Nepodarilo sa odoslať e-mail. "
+                    "Skúste to znova neskôr."
+                )
 
     return render_template(
         "auth/zabudnute_heslo.html",
         chyba=chyba,
-        sprava=sprava,
-        reset_link=reset_link
+        sprava=sprava
     )
-
 
 @app.route("/reset-hesla/<token>", methods=["GET", "POST"])
 def reset_hesla(token):
@@ -409,6 +430,94 @@ def moje_inzeraty():
     ).all()
 
     return render_template("inzeraty/moje_inzeraty.html", inzeraty=inzeraty)
+
+@app.route("/moje-konto")
+def moje_konto():
+
+    if not session.get("user_id"):
+        return redirect(url_for("prihlasenie"))
+
+    user = User.query.get(session["user_id"])
+
+    pocet_inzeratov = Inzerat.query.filter_by(
+        user_id=user.id
+    ).count()
+
+    return render_template(
+        "auth/moje_konto.html",
+        user=user,
+        pocet_inzeratov=pocet_inzeratov
+    )
+
+@app.route("/zmenit-heslo", methods=["GET", "POST"])
+def zmenit_heslo():
+
+    if not session.get("user_id"):
+        return redirect(url_for("prihlasenie"))
+
+    user = User.query.get(session["user_id"])
+
+    chyba = ""
+    sprava = ""
+
+    if request.method == "POST":
+
+        stare_heslo = request.form.get("stare_heslo", "")
+        nove_heslo = request.form.get("nove_heslo", "")
+        nove_heslo2 = request.form.get("nove_heslo2", "")
+
+        if not check_password_hash(user.password, stare_heslo):
+
+            chyba = "Aktuálne heslo nie je správne."
+
+        elif nove_heslo != nove_heslo2:
+
+            chyba = "Nové heslá sa nezhodujú."
+
+        elif not re.match(
+            r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$",
+            nove_heslo
+        ):
+
+            chyba = (
+                "Heslo musí mať minimálne 8 znakov, "
+                "jedno veľké písmeno, jedno malé písmeno "
+                "a jednu číslicu."
+            )
+
+        else:
+
+            user.password = generate_password_hash(nove_heslo)
+
+            db.session.commit()
+
+            sprava = "Heslo bolo úspešne zmenené."
+
+    return render_template(
+        "auth/zmenit_heslo.html",
+        chyba=chyba,
+        sprava=sprava
+    )
+
+@app.route("/zrusit-konto", methods=["POST"])
+def zrusit_konto():
+
+    if not session.get("user_id"):
+        return redirect(url_for("prihlasenie"))
+
+    user_id = session["user_id"]
+
+    Inzerat.query.filter_by(user_id=user_id).delete()
+
+    user = User.query.get(user_id)
+
+    if user:
+        db.session.delete(user)
+
+    db.session.commit()
+    session.clear()
+
+    return redirect(url_for("index"))
 
 
 @app.route("/inzerat/<int:inzerat_id>")
