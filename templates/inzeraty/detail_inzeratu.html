@@ -49,7 +49,7 @@
                 {% if inzerat.cena_dohodou %}
                     dohodou
                 {% else %}
-                    {{ inzerat.cena }} €
+                    {{ inzerat.cena|int }} €
                 {% endif %}
             </h2>
 

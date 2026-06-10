@@ -7,8 +7,8 @@
             <div class="logo-wrapper">
 
                 <a href="{{ url_for('index') }}" class="logo">
-                    <img src="{{ url_for('static', filename='logo2.png') }}"
-                         alt="služby.sk">
+                    <img src="{{ url_for('static', filename='logo_nove.png') }}"
+                         alt="sluzby.sk">
                 </a>
 
                 <div class="logo-subtitle">
@@ -166,21 +166,15 @@
 
                 <span>|</span>
 
-                <a href="{{ url_for('moje_konto') }}">
-                    Moje konto
-                </a>
+                <a href="{{ url_for('moje_konto') }}">Moje konto</a>
 
                 <span>|</span>
 
-                <a href="{{ url_for('moje_inzeraty') }}">
-                    Moje inzeráty
-                </a>
+                <a href="{{ url_for('moje_inzeraty') }}">Moje inzeráty</a>
 
                 <span>|</span>
 
-                <a href="{{ url_for('odhlasenie') }}">
-                    Odhlásiť
-                </a>
+                <a href="{{ url_for('odhlasenie') }}">Odhlásiť</a>
 
                 <a href="{{ url_for('pridat_inzerat') }}" class="btn">
                     Pridať inzerát
@@ -188,15 +182,11 @@
 
             {% else %}
 
-                <a href="{{ url_for('prihlasenie') }}">
-                    Prihlásenie
-                </a>
+                <a href="{{ url_for('prihlasenie') }}">Prihlásenie</a>
 
                 <span>|</span>
 
-                <a href="{{ url_for('registracia') }}">
-                    Registrácia
-                </a>
+                <a href="{{ url_for('registracia') }}">Registrácia</a>
 
                 <a href="{{ url_for('pridat_inzerat') }}" class="btn">
                     Pridať inzerát
