@@ -542,8 +542,38 @@ def kontaktovat_poskytovatela(inzerat_id):
 
         if not meno or not email or not sprava_text:
             chyba = "Vyplňte všetky povinné údaje."
+
+        elif not poskytovatel or not poskytovatel.email:
+            chyba = "Poskytovateľ nemá uložený e-mail."
+
         else:
-            uspech = "Správa bola odoslaná poskytovateľovi."
+            sprava_email = Message(
+                subject=f"Nová správa k inzerátu: {inzerat.nazov}",
+                recipients=[poskytovatel.email]
+            )
+
+            sprava_email.body = f"""
+Dobrý deň,
+
+prišla vám nová správa k inzerátu:
+{inzerat.nazov}
+
+Meno odosielateľa:
+{meno}
+
+E-mail odosielateľa:
+{email}
+
+Správa:
+{sprava_text}
+
+"""
+
+            try:
+                mail.send(sprava_email)
+                uspech = "Správa bola odoslaná poskytovateľovi."
+            except Exception as e:
+                chyba = f"E-mail sa nepodarilo odoslať: {e}"
 
     return render_template(
         "inzeraty/kontaktovat_poskytovatela.html",
@@ -552,7 +582,6 @@ def kontaktovat_poskytovatela(inzerat_id):
         chyba=chyba,
         uspech=uspech
     )
-
 
 @app.route("/pridat-hodnotenie/<int:inzerat_id>", methods=["POST"])
 def pridat_hodnotenie(inzerat_id):

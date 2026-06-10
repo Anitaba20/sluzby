@@ -926,3 +926,32 @@ body{
 .price-checkbox input{
     width:auto;
 }
+
+.header-left{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.logo-wrapper{
+display:flex;
+flex-direction:column;
+}
+
+.logo{
+display:block;
+text-decoration:none;
+}
+
+.logo img{
+height:30px;
+display:block;
+}
+
+.logo-subtitle{
+    font-size:13px;
+    color:#666;
+    text-align:center;
+    margin-top:4px;
+}
+
