@@ -11,9 +11,11 @@
         <section class="detail-main">
 
             <div class="detail-actions">
-                <button>🔗 Zdieľať</button>
+                <button type="button" onclick="zdielatInzerat()">
+                    🔗 Zdieľať
+                </button>
 
-                <button onclick="window.print()">
+                <button type="button" onclick="window.print()">
                     🖨️ Vytlačiť
                 </button>
             </div>
@@ -259,5 +261,22 @@
     </div>
 
 </div>
+
+<script>
+    function zdielatInzerat() {
+        const url = window.location.href;
+        const title = document.title;
+
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                url: url
+            });
+        } else {
+            navigator.clipboard.writeText(url);
+            alert("Odkaz na inzerát bol skopírovaný.");
+        }
+    }
+</script>
 
 {% endblock %}
