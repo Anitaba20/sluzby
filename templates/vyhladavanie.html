@@ -14,21 +14,9 @@
               method="GET"
               action="{{ url_for('vyhladavanie') }}">
 
-            <div class="search-field">
-                <label>Čo hľadáte?</label>
-                <input type="text"
-                       name="q"
-                       value="{{ q }}"
-                       placeholder="elektrikár, maliar, upratovanie">
-            </div>
-
-            <div class="search-field">
-                <label>Lokalita alebo PSČ</label>
-                <input type="text"
-                       name="location"
-                       value="{{ location }}"
-                       placeholder="Bratislava">
-            </div>
+            <input type="hidden"
+                   name="q"
+                   value="{{ q }}">
 
             <div class="search-field small">
                 <label>Cena od</label>
@@ -46,7 +34,30 @@
                        placeholder="100">
             </div>
 
-            <button type="submit">Filtrovať</button>
+            <div class="search-field">
+                <label>Lokalita alebo PSČ</label>
+                <input type="text"
+                       name="location"
+                       value="{{ location }}"
+                       placeholder="Bratislava">
+            </div>
+
+            <div class="search-field">
+                <label>Dátum pridania</label>
+                <select name="sort">
+                    <option value="newest" {% if sort == "newest" %}selected{% endif %}>
+                        Najnovšie
+                    </option>
+
+                    <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>
+                        Najstaršie
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit">
+                Filtrovať
+            </button>
 
         </form>
 
@@ -67,6 +78,7 @@
 
                         <p>
                             {{ inzerat.lokalita }}
+
                             {% if inzerat.psc %}
                                 | {{ inzerat.psc }}
                             {% endif %}
@@ -74,6 +86,7 @@
 
                         <p>
                             {{ inzerat.kategoria }}
+
                             {% if inzerat.podkategoria %}
                                 | {{ inzerat.podkategoria }}
                             {% endif %}
@@ -83,7 +96,11 @@
                             {% if inzerat.cena_dohodou %}
                                 Cena dohodou
                             {% else %}
-                                {{ "%.0f"|format(inzerat.cena) }} €
+                                {% if inzerat.cena == inzerat.cena|int %}
+                                    {{ inzerat.cena|int }} €
+                                {% else %}
+                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                                {% endif %}
                             {% endif %}
                         </p>
 

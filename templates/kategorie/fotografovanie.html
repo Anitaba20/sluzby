@@ -22,6 +22,58 @@
 
             <h1>Fotografovanie</h1>
 
+            <form class="homepage-search"
+                  method="GET">
+
+                <div class="search-field small">
+                    <label>Cena od</label>
+                    <input type="number"
+                           name="price_min"
+                           value="{{ price_min }}"
+                           placeholder="0">
+                </div>
+
+                <div class="search-field small">
+                    <label>Cena do</label>
+                    <input type="number"
+                           name="price_max"
+                           value="{{ price_max }}"
+                           placeholder="100">
+                </div>
+
+                <div class="search-field">
+                    <label>Lokalita alebo PSČ</label>
+                    <input type="text"
+                           name="location"
+                           value="{{ location }}"
+                           placeholder="Bratislava">
+                </div>
+
+                <div class="search-field">
+                    <label>Dátum pridania</label>
+
+                    <select name="sort">
+
+                        <option value="newest"
+                            {% if sort == "newest" %}selected{% endif %}>
+                            Najnovšie
+                        </option>
+
+                        <option value="oldest"
+                            {% if sort == "oldest" %}selected{% endif %}>
+                            Najstaršie
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit">
+                    Filtrovať
+                </button>
+
+            </form>
+
             {% for inzerat in inzeraty %}
 
                 <div class="ad-item">
@@ -62,6 +114,10 @@
 
                         <p>
                             📍 {{ inzerat.lokalita }}
+
+                            {% if inzerat.psc %}
+                                | PSČ: {{ inzerat.psc }}
+                            {% endif %}
                         </p>
 
                         <p>

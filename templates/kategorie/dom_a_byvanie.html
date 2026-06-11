@@ -6,106 +6,154 @@
 
 <div class="main-page">
 
-```
-<div class="category-page">
+    <div class="category-page">
 
-    <div class="side-filter">
+        <div class="side-filter">
 
-        <h2>Podkategórie</h2>
+            <h2>Podkategórie</h2>
 
-        <div class="subcategories">
+            <div class="subcategories">
 
-            <a href="{{ url_for('podkategoria', nazov='Rekonštrukcie') }}">
-                Rekonštrukcie
-            </a>
+                <a href="{{ url_for('podkategoria', nazov='Rekonštrukcie') }}">
+                    Rekonštrukcie
+                </a>
 
-            <a href="{{ url_for('podkategoria', nazov='Maľovanie a stierkovanie') }}">
-                Maľovanie a stierkovanie
-            </a>
+                <a href="{{ url_for('podkategoria', nazov='Maľovanie a stierkovanie') }}">
+                    Maľovanie a stierkovanie
+                </a>
 
-            <a href="{{ url_for('podkategoria', nazov='Elektrikárske práce') }}">
-                Elektrikárske práce
-            </a>
+                <a href="{{ url_for('podkategoria', nazov='Elektrikárske práce') }}">
+                    Elektrikárske práce
+                </a>
 
-            <a href="{{ url_for('podkategoria', nazov='Vodoinštalačné práce') }}">
-                Vodoinštalačné práce
-            </a>
+                <a href="{{ url_for('podkategoria', nazov='Vodoinštalačné práce') }}">
+                    Vodoinštalačné práce
+                </a>
 
-            <a href="{{ url_for('podkategoria', nazov='Iné') }}">
-                Iné
-            </a>
+                <a href="{{ url_for('podkategoria', nazov='Iné') }}">
+                    Iné
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="ads-list">
+
+            <h1>Dom a bývanie</h1>
+
+            <form class="homepage-search"
+                  method="GET">
+
+                <div class="search-field small">
+                    <label>Cena od</label>
+                    <input type="number"
+                           name="price_min"
+                           value="{{ price_min }}"
+                           placeholder="0">
+                </div>
+
+                <div class="search-field small">
+                    <label>Cena do</label>
+                    <input type="number"
+                           name="price_max"
+                           value="{{ price_max }}"
+                           placeholder="100">
+                </div>
+
+                <div class="search-field">
+                    <label>Lokalita alebo PSČ</label>
+                    <input type="text"
+                           name="location"
+                           value="{{ location }}"
+                           placeholder="Bratislava">
+                </div>
+
+                <div class="search-field">
+                    <label>Dátum pridania</label>
+                    <select name="sort">
+                        <option value="newest" {% if sort == "newest" %}selected{% endif %}>
+                            Najnovšie
+                        </option>
+
+                        <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>
+                            Najstaršie
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Filtrovať
+                </button>
+
+            </form>
+
+            {% for inzerat in inzeraty %}
+
+                <div class="ad-item">
+
+                    <div class="ad-icon">
+                        🏠
+                    </div>
+
+                    <div class="ad-content">
+
+                        <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
+                           class="ad-title">
+                            {{ inzerat.nazov }}
+                        </a>
+
+                        <p>
+                            {{ inzerat.popis[:180] }}...
+                        </p>
+
+                        <strong>
+                            Cena:
+
+                            {% if inzerat.cena_dohodou %}
+                                dohodou
+
+                            {% elif inzerat.cena %}
+
+                                {% if inzerat.cena == inzerat.cena|int %}
+                                    {{ inzerat.cena|int }} €
+                                {% else %}
+                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                                {% endif %}
+
+                            {% else %}
+                                dohodou
+                            {% endif %}
+                        </strong>
+
+                        <p>
+                            📍 {{ inzerat.lokalita }}
+
+                            {% if inzerat.psc %}
+                                | PSČ: {{ inzerat.psc }}
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            Pridané:
+                            {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <p>
+                    V tejto kategórii zatiaľ nie sú žiadne inzeráty.
+                </p>
+
+            {% endfor %}
 
         </div>
 
     </div>
-
-    <div class="ads-list">
-
-        <h1>Dom a bývanie</h1>
-
-        {% for inzerat in inzeraty %}
-
-            <div class="ad-item">
-
-                <div class="ad-icon">
-                    🏠
-                </div>
-
-                <div class="ad-content">
-
-                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
-                       class="ad-title">
-                        {{ inzerat.nazov }}
-                    </a>
-
-                    <p>
-                        {{ inzerat.popis[:180] }}...
-                    </p>
-
-                    <strong>
-                        Cena:
-
-                        {% if inzerat.cena_dohodou %}
-                            dohodou
-
-                        {% elif inzerat.cena %}
-
-                            {% if inzerat.cena == inzerat.cena|int %}
-                                {{ inzerat.cena|int }} €
-                            {% else %}
-                                {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
-                            {% endif %}
-
-                        {% else %}
-                            dohodou
-                        {% endif %}
-                    </strong>
-
-                    <p>
-                        📍 {{ inzerat.lokalita }}
-                    </p>
-
-                    <p>
-                        Pridané:
-                        {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
-                    </p>
-
-                </div>
-
-            </div>
-
-        {% else %}
-
-            <p>
-                V tejto kategórii zatiaľ nie sú žiadne inzeráty.
-            </p>
-
-        {% endfor %}
-
-    </div>
-
-</div>
-```
 
 </div>
 

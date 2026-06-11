@@ -782,14 +782,54 @@ def pridat_recenzie(inzerat_id):
 
 
 def zobraz_kategoriu(nazov_kategorie, sablona):
-    inzeraty = Inzerat.query.filter_by(
+    query = Inzerat.query.filter_by(
         kategoria=nazov_kategorie
-    ).order_by(
-        Inzerat.datum_pridania.desc()
-    ).all()
+    )
 
-    return render_template(sablona, inzeraty=inzeraty)
+    query, price_min, price_max, location, sort = filtruj_inzeraty(query)
 
+    inzeraty = query.all()
+
+    return render_template(
+        sablona,
+        inzeraty=inzeraty,
+        price_min=price_min,
+        price_max=price_max,
+        location=location,
+        sort=sort
+    )
+
+def filtruj_inzeraty(query):
+
+    price_min = request.args.get("price_min", "").strip()
+    price_max = request.args.get("price_max", "").strip()
+    location = request.args.get("location", "").strip()
+    sort = request.args.get("sort", "newest")
+
+    if location:
+        hladana_lokalita = f"%{location}%"
+
+        query = query.filter(
+            db.or_(
+                Inzerat.lokalita.ilike(hladana_lokalita),
+                Inzerat.psc.ilike(hladana_lokalita)
+            )
+        )
+
+    if price_min:
+        query = query.filter(Inzerat.cena_dohodou == False)
+        query = query.filter(Inzerat.cena >= float(price_min))
+
+    if price_max:
+        query = query.filter(Inzerat.cena_dohodou == False)
+        query = query.filter(Inzerat.cena <= float(price_max))
+
+    if sort == "oldest":
+        query = query.order_by(Inzerat.datum_pridania.asc())
+    else:
+        query = query.order_by(Inzerat.datum_pridania.desc())
+
+    return query, price_min, price_max, location, sort
 
 @app.route("/dom-a-byvanie")
 def dom_a_byvanie():
@@ -858,6 +898,7 @@ def vyhladavanie():
     location = request.args.get("location", "").strip()
     price_min = request.args.get("price_min", "").strip()
     price_max = request.args.get("price_max", "").strip()
+    sort = request.args.get("sort", "newest").strip()
 
     query = Inzerat.query
 
@@ -883,13 +924,18 @@ def vyhladavanie():
 
     if price_min:
         query = query.filter(Inzerat.cena_dohodou == False)
-        query = query.filter(Inzerat.cena >= float(price_min))
+        query = query.filter(Inzerat.cena >= float(price_min.replace(",", ".")))
 
     if price_max:
         query = query.filter(Inzerat.cena_dohodou == False)
-        query = query.filter(Inzerat.cena <= float(price_max))
+        query = query.filter(Inzerat.cena <= float(price_max.replace(",", ".")))
 
-    vysledky = query.order_by(Inzerat.datum_pridania.desc()).all()
+    if sort == "oldest":
+        query = query.order_by(Inzerat.datum_pridania.asc())
+    else:
+        query = query.order_by(Inzerat.datum_pridania.desc())
+
+    vysledky = query.all()
 
     return render_template(
         "vyhladavanie.html",
@@ -897,7 +943,8 @@ def vyhladavanie():
         q=q,
         location=location,
         price_min=price_min,
-        price_max=price_max
+        price_max=price_max,
+        sort=sort
     )
 
 @app.route("/o-nas")
