@@ -892,7 +892,7 @@ def podkategoria(nazov):
     inzeraty = query.all()
 
     return render_template(
-        "kategorie/podkategoria_k.html",
+        "kategorie/podkategoria.html",
         nazov=nazov,
         inzeraty=inzeraty,
         price_min=price_min,
