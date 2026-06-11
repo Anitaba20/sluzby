@@ -141,53 +141,53 @@
 <script>
     const subcategories = {
         "Dom a bývanie": [
-            "Rekonštrukcie",
-            "Maľovanie a stierkovanie",
-            "Elektrikárske práce",
-            "Vodoinštalačné práce",
-            "Iné"
+            { text: "Rekonštrukcie", value: "Rekonštrukcie" },
+            { text: "Maľovanie a stierkovanie", value: "Maľovanie a stierkovanie" },
+            { text: "Elektrikárske práce", value: "Elektrikárske práce" },
+            { text: "Vodoinštalačné práce", value: "Vodoinštalačné práce" },
+            { text: "Iné", value: "Iné - Dom a bývanie" }
         ],
         "Záhrada a exteriér": [
-            "Kosenie trávnikov",
-            "Údržba záhrad",
-            "Živé ploty",
-            "Terénne úpravy",
-            "Iné"
+            { text: "Kosenie trávnikov", value: "Kosenie trávnikov" },
+            { text: "Údržba záhrad", value: "Údržba záhrad" },
+            { text: "Živé ploty", value: "Živé ploty" },
+            { text: "Terénne úpravy", value: "Terénne úpravy" },
+            { text: "Iné", value: "Iné - Záhrada a exteriér" }
         ],
         "Sťahovanie a doprava": [
-            "Sťahovanie",
-            "Preprava",
-            "Iné"
+            { text: "Sťahovanie", value: "Sťahovanie" },
+            { text: "Preprava", value: "Preprava" },
+            { text: "Iné", value: "Iné - Sťahovanie a doprava" }
         ],
         "Online služby": [
-            "Tvorba webstránok",
-            "Grafika a dizajn",
-            "SEO a marketing",
-            "Správa sociálnych sietí",
-            "Servis počítačov",
-            "Iné"
+            { text: "Tvorba webstránok", value: "Tvorba webstránok" },
+            { text: "Grafika a dizajn", value: "Grafika a dizajn" },
+            { text: "SEO a marketing", value: "SEO a marketing" },
+            { text: "Správa sociálnych sietí", value: "Správa sociálnych sietí" },
+            { text: "Servis počítačov", value: "Servis počítačov" },
+            { text: "Iné", value: "Iné - Online služby" }
         ],
         "Administratíva a financie": [
-            "Účtovníctvo",
-            "Mzdy a personalistika",
-            "Administratívna pomoc",
-            "Daňové priznania",
-            "Iné"
+            { text: "Účtovníctvo", value: "Účtovníctvo" },
+            { text: "Mzdy a personalistika", value: "Mzdy a personalistika" },
+            { text: "Administratívna pomoc", value: "Administratívna pomoc" },
+            { text: "Daňové priznania", value: "Daňové priznania" },
+            { text: "Iné", value: "Iné - Administratíva a financie" }
         ],
         "Starostlivosť a pomoc": [
-            "Opatrovanie detí",
-            "Opatrovanie seniorov",
-            "Upratovanie",
-            "Pomoc v domácnosti",
-            "Iné"
+            { text: "Opatrovanie detí", value: "Opatrovanie detí" },
+            { text: "Opatrovanie seniorov", value: "Opatrovanie seniorov" },
+            { text: "Upratovanie", value: "Upratovanie" },
+            { text: "Pomoc v domácnosti", value: "Pomoc v domácnosti" },
+            { text: "Iné", value: "Iné - Starostlivosť a pomoc" }
         ],
         "Krása a zdravie": [
-            "Kaderníctvo",
-            "Kozmetika",
-            "Manikúra a pedikúra",
-            "Masáže",
-            "Tetovanie",
-            "Iné"
+            { text: "Kaderníctvo", value: "Kaderníctvo" },
+            { text: "Kozmetika", value: "Kozmetika" },
+            { text: "Manikúra a pedikúra", value: "Manikúra a pedikúra" },
+            { text: "Masáže", value: "Masáže" },
+            { text: "Tetovanie", value: "Tetovanie" },
+            { text: "Iné", value: "Iné - Krása a zdravie" }
         ],
         "Doučovanie": [],
         "Fotografovanie": [],
@@ -218,8 +218,8 @@
 
         options.forEach(function (subcategory) {
             const option = document.createElement("option");
-            option.value = subcategory;
-            option.textContent = subcategory;
+            option.value = subcategory.value;
+            option.textContent = subcategory.text;
             subcategorySelect.appendChild(option);
         });
     });

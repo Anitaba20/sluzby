@@ -137,6 +137,51 @@ def globalne_premenne():
             "krasa": Inzerat.query.filter_by(kategoria="Krása a zdravie").count(),
             "fotografovanie": Inzerat.query.filter_by(kategoria="Fotografovanie").count(),
             "preklady": Inzerat.query.filter_by(kategoria="Preklady").count()
+        },
+
+        "podkategorie_pocty": {
+            "Rekonštrukcie": Inzerat.query.filter_by(podkategoria="Rekonštrukcie").count(),
+            "Maľovanie a stierkovanie": Inzerat.query.filter_by(podkategoria="Maľovanie a stierkovanie").count(),
+            "Elektrikárske práce": Inzerat.query.filter_by(podkategoria="Elektrikárske práce").count(),
+            "Vodoinštalačné práce": Inzerat.query.filter_by(podkategoria="Vodoinštalačné práce").count(),
+
+            "Kosenie trávnikov": Inzerat.query.filter_by(podkategoria="Kosenie trávnikov").count(),
+            "Údržba záhrad": Inzerat.query.filter_by(podkategoria="Údržba záhrad").count(),
+            "Živé ploty": Inzerat.query.filter_by(podkategoria="Živé ploty").count(),
+            "Terénne úpravy": Inzerat.query.filter_by(podkategoria="Terénne úpravy").count(),
+
+            "Sťahovanie": Inzerat.query.filter_by(podkategoria="Sťahovanie").count(),
+            "Preprava": Inzerat.query.filter_by(podkategoria="Preprava").count(),
+
+            "Tvorba webstránok": Inzerat.query.filter_by(podkategoria="Tvorba webstránok").count(),
+            "Grafika a dizajn": Inzerat.query.filter_by(podkategoria="Grafika a dizajn").count(),
+            "SEO a marketing": Inzerat.query.filter_by(podkategoria="SEO a marketing").count(),
+            "Správa sociálnych sietí": Inzerat.query.filter_by(podkategoria="Správa sociálnych sietí").count(),
+            "Servis počítačov": Inzerat.query.filter_by(podkategoria="Servis počítačov").count(),
+
+            "Účtovníctvo": Inzerat.query.filter_by(podkategoria="Účtovníctvo").count(),
+            "Mzdy a personalistika": Inzerat.query.filter_by(podkategoria="Mzdy a personalistika").count(),
+            "Administratívna pomoc": Inzerat.query.filter_by(podkategoria="Administratívna pomoc").count(),
+            "Daňové priznania": Inzerat.query.filter_by(podkategoria="Daňové priznania").count(),
+
+            "Opatrovanie detí": Inzerat.query.filter_by(podkategoria="Opatrovanie detí").count(),
+            "Opatrovanie seniorov": Inzerat.query.filter_by(podkategoria="Opatrovanie seniorov").count(),
+            "Upratovanie": Inzerat.query.filter_by(podkategoria="Upratovanie").count(),
+            "Pomoc v domácnosti": Inzerat.query.filter_by(podkategoria="Pomoc v domácnosti").count(),
+
+            "Kaderníctvo": Inzerat.query.filter_by(podkategoria="Kaderníctvo").count(),
+            "Kozmetika": Inzerat.query.filter_by(podkategoria="Kozmetika").count(),
+            "Manikúra a pedikúra": Inzerat.query.filter_by(podkategoria="Manikúra a pedikúra").count(),
+            "Masáže": Inzerat.query.filter_by(podkategoria="Masáže").count(),
+            "Tetovanie": Inzerat.query.filter_by(podkategoria="Tetovanie").count(),
+
+            "Iné - Dom a bývanie": Inzerat.query.filter_by(podkategoria="Iné - Dom a bývanie").count(),
+            "Iné - Záhrada a exteriér": Inzerat.query.filter_by(podkategoria="Iné - Záhrada a exteriér").count(),
+            "Iné - Sťahovanie a doprava": Inzerat.query.filter_by(podkategoria="Iné - Sťahovanie a doprava").count(),
+            "Iné - Online služby": Inzerat.query.filter_by(podkategoria="Iné - Online služby").count(),
+            "Iné - Administratíva a financie": Inzerat.query.filter_by(podkategoria="Iné - Administratíva a financie").count(),
+            "Iné - Starostlivosť a pomoc": Inzerat.query.filter_by(podkategoria="Iné - Starostlivosť a pomoc").count(),
+            "Iné - Krása a zdravie": Inzerat.query.filter_by(podkategoria="Iné - Krása a zdravie").count()
         }
     }
 

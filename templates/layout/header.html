@@ -33,11 +33,11 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Rekonštrukcie') }}">Rekonštrukcie</a>
-                            <a href="{{ url_for('podkategoria', nazov='Maľovanie a stierkovanie') }}">Maľovanie a stierkovanie</a>
-                            <a href="{{ url_for('podkategoria', nazov='Elektrikárske práce') }}">Elektrikárske práce</a>
-                            <a href="{{ url_for('podkategoria', nazov='Vodoinštalačné práce') }}">Vodoinštalačné práce</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Rekonštrukcie') }}">Rekonštrukcie ({{ podkategorie_pocty["Rekonštrukcie"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Maľovanie a stierkovanie') }}">Maľovanie a stierkovanie ({{ podkategorie_pocty["Maľovanie a stierkovanie"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Elektrikárske práce') }}">Elektrikárske práce ({{ podkategorie_pocty["Elektrikárske práce"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Vodoinštalačné práce') }}">Vodoinštalačné práce ({{ podkategorie_pocty["Vodoinštalačné práce"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Dom a bývanie') }}">Iné ({{ podkategorie_pocty["Iné - Dom a bývanie"] }})</a>
                         </div>
                     </div>
 
@@ -49,11 +49,11 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Kosenie trávnikov') }}">Kosenie trávnikov</a>
-                            <a href="{{ url_for('podkategoria', nazov='Údržba záhrad') }}">Údržba záhrad</a>
-                            <a href="{{ url_for('podkategoria', nazov='Živé ploty') }}">Živé ploty</a>
-                            <a href="{{ url_for('podkategoria', nazov='Terénne úpravy') }}">Terénne úpravy</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Kosenie trávnikov') }}">Kosenie trávnikov ({{ podkategorie_pocty["Kosenie trávnikov"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Údržba záhrad') }}">Údržba záhrad ({{ podkategorie_pocty["Údržba záhrad"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Živé ploty') }}">Živé ploty ({{ podkategorie_pocty["Živé ploty"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Terénne úpravy') }}">Terénne úpravy ({{ podkategorie_pocty["Terénne úpravy"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Záhrada a exteriér') }}">Iné ({{ podkategorie_pocty["Iné - Záhrada a exteriér"] }})</a>
                         </div>
                     </div>
 
@@ -65,9 +65,9 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Sťahovanie') }}">Sťahovanie</a>
-                            <a href="{{ url_for('podkategoria', nazov='Preprava') }}">Preprava</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Sťahovanie') }}">Sťahovanie ({{ podkategorie_pocty["Sťahovanie"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Preprava') }}">Preprava ({{ podkategorie_pocty["Preprava"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Sťahovanie a doprava') }}">Iné ({{ podkategorie_pocty["Iné - Sťahovanie a doprava"] }})</a>
                         </div>
                     </div>
 
@@ -84,12 +84,12 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Tvorba webstránok') }}">Tvorba webstránok</a>
-                            <a href="{{ url_for('podkategoria', nazov='Grafika a dizajn') }}">Grafika a dizajn</a>
-                            <a href="{{ url_for('podkategoria', nazov='SEO a marketing') }}">SEO a marketing</a>
-                            <a href="{{ url_for('podkategoria', nazov='Správa sociálnych sietí') }}">Správa sociálnych sietí</a>
-                            <a href="{{ url_for('podkategoria', nazov='Servis počítačov') }}">Servis počítačov</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Tvorba webstránok') }}">Tvorba webstránok ({{ podkategorie_pocty["Tvorba webstránok"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Grafika a dizajn') }}">Grafika a dizajn ({{ podkategorie_pocty["Grafika a dizajn"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='SEO a marketing') }}">SEO a marketing ({{ podkategorie_pocty["SEO a marketing"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Správa sociálnych sietí') }}">Správa sociálnych sietí ({{ podkategorie_pocty["Správa sociálnych sietí"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Servis počítačov') }}">Servis počítačov ({{ podkategorie_pocty["Servis počítačov"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Online služby') }}">Iné ({{ podkategorie_pocty["Iné - Online služby"] }})</a>
                         </div>
                     </div>
 
@@ -101,11 +101,11 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Účtovníctvo') }}">Účtovníctvo</a>
-                            <a href="{{ url_for('podkategoria', nazov='Mzdy a personalistika') }}">Mzdy a personalistika</a>
-                            <a href="{{ url_for('podkategoria', nazov='Administratívna pomoc') }}">Administratívna pomoc</a>
-                            <a href="{{ url_for('podkategoria', nazov='Daňové priznania') }}">Daňové priznania</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Účtovníctvo') }}">Účtovníctvo ({{ podkategorie_pocty["Účtovníctvo"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Mzdy a personalistika') }}">Mzdy a personalistika ({{ podkategorie_pocty["Mzdy a personalistika"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Administratívna pomoc') }}">Administratívna pomoc ({{ podkategorie_pocty["Administratívna pomoc"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Daňové priznania') }}">Daňové priznania ({{ podkategorie_pocty["Daňové priznania"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Administratíva a financie') }}">Iné ({{ podkategorie_pocty["Iné - Administratíva a financie"] }})</a>
                         </div>
                     </div>
 
@@ -117,11 +117,11 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Opatrovanie detí') }}">Opatrovanie detí</a>
-                            <a href="{{ url_for('podkategoria', nazov='Opatrovanie seniorov') }}">Opatrovanie seniorov</a>
-                            <a href="{{ url_for('podkategoria', nazov='Upratovanie') }}">Upratovanie</a>
-                            <a href="{{ url_for('podkategoria', nazov='Pomoc v domácnosti') }}">Pomoc v domácnosti</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Opatrovanie detí') }}">Opatrovanie detí ({{ podkategorie_pocty["Opatrovanie detí"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Opatrovanie seniorov') }}">Opatrovanie seniorov ({{ podkategorie_pocty["Opatrovanie seniorov"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Upratovanie') }}">Upratovanie ({{ podkategorie_pocty["Upratovanie"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Pomoc v domácnosti') }}">Pomoc v domácnosti ({{ podkategorie_pocty["Pomoc v domácnosti"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Starostlivosť a pomoc') }}">Iné ({{ podkategorie_pocty["Iné - Starostlivosť a pomoc"] }})</a>
                         </div>
                     </div>
 
@@ -133,12 +133,12 @@
                         </a>
 
                         <div class="submenu">
-                            <a href="{{ url_for('podkategoria', nazov='Kaderníctvo') }}">Kaderníctvo</a>
-                            <a href="{{ url_for('podkategoria', nazov='Kozmetika') }}">Kozmetika</a>
-                            <a href="{{ url_for('podkategoria', nazov='Manikúra a pedikúra') }}">Manikúra a pedikúra</a>
-                            <a href="{{ url_for('podkategoria', nazov='Masáže') }}">Masáže</a>
-                            <a href="{{ url_for('podkategoria', nazov='Tetovanie') }}">Tetovanie</a>
-                            <a href="{{ url_for('podkategoria', nazov='Iné') }}">Iné</a>
+                            <a href="{{ url_for('podkategoria', nazov='Kaderníctvo') }}">Kaderníctvo ({{ podkategorie_pocty["Kaderníctvo"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Kozmetika') }}">Kozmetika ({{ podkategorie_pocty["Kozmetika"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Manikúra a pedikúra') }}">Manikúra a pedikúra ({{ podkategorie_pocty["Manikúra a pedikúra"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Masáže') }}">Masáže ({{ podkategorie_pocty["Masáže"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Tetovanie') }}">Tetovanie ({{ podkategorie_pocty["Tetovanie"] }})</a>
+                            <a href="{{ url_for('podkategoria', nazov='Iné - Krása a zdravie') }}">Iné ({{ podkategorie_pocty["Iné - Krása a zdravie"] }})</a>
                         </div>
                     </div>
 

@@ -475,8 +475,8 @@ body{
 }
 
 .homepage-hero h1{
-    font-size:42px;
-    margin-bottom:30px;
+    font-size:25px;
+    margin-bottom:10px;
     color:#111827;
 }
 
@@ -637,6 +637,8 @@ body{
 .search-count{
     margin:0 0 6px 0;
 }
+
+
 
 /******** KATEGORIE ********/
 
