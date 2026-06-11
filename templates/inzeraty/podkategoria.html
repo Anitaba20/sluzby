@@ -6,46 +6,116 @@
 
 <div class="main-page">
 
-    <div class="my-ads-page">
+    <div class="search-results-page">
 
         <h1>{{ nazov }}</h1>
 
+        <form class="homepage-search"
+              method="GET">
+
+            <div class="search-field small">
+                <label>Cena od</label>
+                <input type="number"
+                       name="price_min"
+                       value="{{ price_min }}"
+                       placeholder="0">
+            </div>
+
+            <div class="search-field small">
+                <label>Cena do</label>
+                <input type="number"
+                       name="price_max"
+                       value="{{ price_max }}"
+                       placeholder="100">
+            </div>
+
+            <div class="search-field">
+                <label>Lokalita alebo PSČ</label>
+                <input type="text"
+                       name="location"
+                       value="{{ location }}"
+                       placeholder="Bratislava">
+            </div>
+
+            <div class="search-field">
+                <label>Dátum pridania</label>
+
+                <select name="sort">
+
+                    <option value="newest"
+                        {% if sort == "newest" %}selected{% endif %}>
+                        Najnovšie
+                    </option>
+
+                    <option value="oldest"
+                        {% if sort == "oldest" %}selected{% endif %}>
+                        Najstaršie
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit">
+                Filtrovať
+            </button>
+
+        </form>
+
         {% if inzeraty %}
 
-            {% for inzerat in inzeraty %}
+            <p class="search-count">
+                Počet nájdených služieb: {{ inzeraty|length }}
+            </p>
 
-                <div class="my-ad-card">
+            <div class="search-results-list">
 
-                    <h3>{{ inzerat.nazov }}</h3>
+                {% for inzerat in inzeraty %}
 
-                    <p>
-                        Kategória:
-                        {{ inzerat.kategoria }}
-                    </p>
+                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
+                       class="search-result-card">
 
-                    {% if inzerat.podkategoria %}
+                        <h2>{{ inzerat.nazov }}</h2>
+
                         <p>
-                            Podkategória:
-                            {{ inzerat.podkategoria }}
+                            {{ inzerat.lokalita }}
+
+                            {% if inzerat.psc %}
+                                | {{ inzerat.psc }}
+                            {% endif %}
                         </p>
-                    {% endif %}
 
-                    <p>
-                        Lokalita:
-                        {{ inzerat.lokalita }}
-                    </p>
+                        <p>
+                            {{ inzerat.kategoria }}
 
-                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}">
-                        Detail inzerátu
+                            {% if inzerat.podkategoria %}
+                                | {{ inzerat.podkategoria }}
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            {% if inzerat.cena_dohodou %}
+                                Cena dohodou
+                            {% else %}
+                                {% if inzerat.cena == inzerat.cena|int %}
+                                    {{ inzerat.cena|int }} €
+                                {% else %}
+                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                                {% endif %}
+                            {% endif %}
+                        </p>
+
                     </a>
 
-                </div>
+                {% endfor %}
 
-            {% endfor %}
+            </div>
 
         {% else %}
 
-            <p>V tejto podkategórii zatiaľ nie sú žiadne inzeráty.</p>
+            <p class="empty-results">
+                V tejto podkategórii zatiaľ nie sú žiadne inzeráty.
+            </p>
 
         {% endif %}
 

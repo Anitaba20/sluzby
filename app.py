@@ -883,13 +883,23 @@ def preklady():
 
 @app.route("/podkategoria/<nazov>")
 def podkategoria(nazov):
-    inzeraty = Inzerat.query.filter_by(
+    query = Inzerat.query.filter_by(
         podkategoria=nazov
-    ).order_by(
-        Inzerat.datum_pridania.desc()
-    ).all()
+    )
 
-    return render_template("kategorie/podkategoria.html", nazov=nazov, inzeraty=inzeraty)
+    query, price_min, price_max, location, sort = filtruj_inzeraty(query)
+
+    inzeraty = query.all()
+
+    return render_template(
+        "kategorie/podkategoria_k.html",
+        nazov=nazov,
+        inzeraty=inzeraty,
+        price_min=price_min,
+        price_max=price_max,
+        location=location,
+        sort=sort
+    )
 
 
 @app.route("/vyhladavanie")
