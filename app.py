@@ -674,18 +674,31 @@ def detail_inzeratu(inzerat_id):
 
 @app.route("/poskytovatel/<int:user_id>/inzeraty")
 def inzeraty_poskytovatela(user_id):
+
     poskytovatel = User.query.get_or_404(user_id)
 
-    inzeraty = Inzerat.query.filter_by(
+    sort = request.args.get("sort", "newest")
+
+    query = Inzerat.query.filter_by(
         user_id=user_id
-    ).order_by(
-        Inzerat.datum_pridania.desc()
-    ).all()
+    )
+
+    if sort == "oldest":
+        query = query.order_by(
+            Inzerat.datum_pridania.asc()
+        )
+    else:
+        query = query.order_by(
+            Inzerat.datum_pridania.desc()
+        )
+
+    inzeraty = query.all()
 
     return render_template(
         "inzeraty/inzeraty_poskytovatela.html",
         poskytovatel=poskytovatel,
-        inzeraty=inzeraty
+        inzeraty=inzeraty,
+        sort=sort
     )
 
 @app.route("/upravit-inzerat/<int:inzerat_id>", methods=["GET", "POST"])

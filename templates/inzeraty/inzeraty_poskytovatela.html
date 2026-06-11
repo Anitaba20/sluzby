@@ -14,6 +14,26 @@
             Počet inzerátov: {{ inzeraty|length }}
         </p>
 
+        <form method="GET" class="provider-filter">
+
+            <label>Dátum pridania:</label>
+
+            <select name="sort" onchange="this.form.submit()">
+
+                <option value="newest"
+                    {% if sort == "newest" %}selected{% endif %}>
+                    Najnovšie
+                </option>
+
+                <option value="oldest"
+                    {% if sort == "oldest" %}selected{% endif %}>
+                    Najstaršie
+                </option>
+
+            </select>
+
+        </form>
+
         {% if inzeraty %}
 
             <div class="search-results-list">
@@ -39,6 +59,11 @@
                             {% if inzerat.podkategoria %}
                                 | {{ inzerat.podkategoria }}
                             {% endif %}
+                        </p>
+
+                        <p>
+                            Pridané:
+                            {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
                         </p>
 
                         <p>
