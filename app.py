@@ -9,6 +9,8 @@ from datetime import datetime, timedelta, timezone
 import jwt
 import re
 import os
+from io import BytesIO
+from PIL import Image
 
 load_dotenv()
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
@@ -143,9 +145,51 @@ def uloz_obrazok(subor):
     if not subor or subor.filename == "":
         return None
 
+    povolene_pripony = ["jpg", "jpeg", "png", "webp"]
+
+    if "." not in subor.filename:
+        raise ValueError("Obrázok nebol nahraný. Povolené sú iba JPG, JPEG, PNG alebo WEBP.")
+
     nazov = secure_filename(subor.filename)
+    pripona = nazov.rsplit(".", 1)[1].lower()
+
+    if pripona not in povolene_pripony:
+        raise ValueError("Obrázok nebol nahraný. Povolené sú iba JPG, JPEG, PNG alebo WEBP.")
+
     cesta = os.path.join(UPLOAD_FOLDER, nazov)
+
     subor.save(cesta)
+
+    try:
+        obrazok = Image.open(cesta)
+        sirka, vyska = obrazok.size
+    except Exception:
+        if os.path.exists(cesta):
+            os.remove(cesta)
+        raise ValueError("Obrázok nebol nahraný. Súbor nie je platný obrázok.")
+
+    max_velkost = 5 * 1024 * 1024
+
+    if os.path.getsize(cesta) > max_velkost:
+        obrazok.close()
+        os.remove(cesta)
+        raise ValueError("Obrázok nebol nahraný. Maximálna veľkosť je 5 MB.")
+
+    if sirka < 600 or vyska < 400:
+        obrazok.close()
+        os.remove(cesta)
+        raise ValueError("Obrázok nebol nahraný. Minimálne rozmery sú 600 × 400 px.")
+
+    max_sirka = 1000
+    max_vyska = 700
+
+    obrazok.thumbnail((max_sirka, max_vyska))
+
+    if pripona in ["jpg", "jpeg"]:
+        obrazok = obrazok.convert("RGB")
+
+    obrazok.save(cesta, optimize=True, quality=85)
+    obrazok.close()
 
     return nazov
 
@@ -608,35 +652,44 @@ def upravit_inzerat(inzerat_id):
         if not nazov or not kategoria or not lokalita or not popis:
             chyba = "Vyplňte všetky povinné polia."
         else:
-            inzerat.nazov = nazov
-            inzerat.kategoria = kategoria
-            inzerat.podkategoria = podkategoria
-            inzerat.cena = float(cena) if cena else None
-            inzerat.lokalita = lokalita
-            inzerat.psc = psc
-            inzerat.popis = popis
+            try:
+                inzerat.nazov = nazov
+                inzerat.kategoria = kategoria
+                inzerat.podkategoria = podkategoria
 
-            foto1 = uloz_obrazok(request.files.get("photo"))
-            foto2 = uloz_obrazok(request.files.get("photo2"))
-            foto3 = uloz_obrazok(request.files.get("photo3"))
+                if cena and cena != "None":
+                    inzerat.cena = float(cena.replace(",", "."))
+                else:
+                    inzerat.cena = None
 
-            if foto1:
-                inzerat.obrazok = foto1
+                inzerat.lokalita = lokalita
+                inzerat.psc = psc
+                inzerat.popis = popis
 
-            if foto2:
-                inzerat.obrazok_2 = foto2
+                foto1 = uloz_obrazok(request.files.get("photo"))
+                foto2 = uloz_obrazok(request.files.get("photo2"))
+                foto3 = uloz_obrazok(request.files.get("photo3"))
 
-            if foto3:
-                inzerat.obrazok_3 = foto3
+                if foto1:
+                    inzerat.obrazok = foto1
 
-            db.session.commit()
+                if foto2:
+                    inzerat.obrazok_2 = foto2
 
-            return redirect(
-                url_for(
-                    "detail_inzeratu",
-                    inzerat_id=inzerat.id
+                if foto3:
+                    inzerat.obrazok_3 = foto3
+
+                db.session.commit()
+
+                return redirect(
+                    url_for(
+                        "detail_inzeratu",
+                        inzerat_id=inzerat.id
+                    )
                 )
-            )
+
+            except ValueError as e:
+                chyba = str(e)
 
     return render_template(
         "inzeraty/upravit_inzerat.html",
