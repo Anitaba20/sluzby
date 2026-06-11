@@ -29,11 +29,8 @@ body{
 .main-page{
     width:1280px;
     margin:0 auto;
-    background:linear-gradient(
-        to bottom,
-        #f2fbfc 0%,
-        #ffffff 100%
-    );
+    background:#f2fbfc;
+    min-height:calc(100vh - 170px);
 }
 
 
@@ -1089,10 +1086,8 @@ display:block;
 }
 
 /* MOJE KONTO */
-
 .my-account-page{
-    max-width:800px;
-    margin:40px auto;
+    padding:40px;
 }
 
 .my-account-page h1{
@@ -1104,9 +1099,9 @@ display:block;
 .account-card{
     background:white;
     border:1px solid #e5e7eb;
-    border-radius:14px;
-    padding:30px;
-    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .account-card p{

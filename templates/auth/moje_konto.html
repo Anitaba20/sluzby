@@ -6,11 +6,11 @@
 
 <div class="main-page">
 
-    <div class="my-account-page">
+    <div class="my-ads-page">
 
         <h1>Moje konto</h1>
 
-        <div class="account-card">
+        <div class="my-ad-card">
 
             <p>
                 <strong>Používateľské meno:</strong>
@@ -27,15 +27,15 @@
                 {{ pocet_inzeratov }}
             </p>
 
-            <div class="account-links">
+            <div class="my-ads-actions">
 
                 <a href="{{ url_for('moje_inzeraty') }}"
-                   class="account-btn">
+                   class="edit-btn">
                     Moje inzeráty
                 </a>
 
                 <a href="{{ url_for('zmenit_heslo') }}"
-                   class="account-btn">
+                   class="edit-btn">
                     Zmeniť heslo
                 </a>
 
@@ -44,7 +44,7 @@
                       onsubmit="return confirm('Naozaj chcete zrušiť konto? Táto akcia je nevratná.');">
 
                     <button type="submit"
-                            class="delete-account-btn">
+                            class="delete-btn">
                         Zrušiť konto
                     </button>
 
