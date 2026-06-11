@@ -67,10 +67,18 @@ body{
     font-size:16px;
 }
 
+/*.btn{*/
+/*    margin-left:15px;*/
+/*    background:#d1d5db;*/
+/*    color:#1f2937 !important;*/
+/*    padding:12px 20px;*/
+/*    border-radius:8px;*/
+/*}*/
+
 .btn{
     margin-left:15px;
-    background:#bcc3ca;
-    color:#1f2937 !important;
+    background: #d6dbe1;
+    color: #1f2937;
     padding:12px 20px;
     border-radius:8px;
 }
@@ -516,27 +524,15 @@ body{
     font-size:15px;
 }
 
-/*.homepage-search button{*/
-/*    height:42px;*/
-/*    padding:0 24px;*/
-/*    background:#2563eb;*/
-/*    color:white;*/
-/*    border:none;*/
-/*    border-radius:7px;*/
-/*    font-size:16px;*/
-/*    font-weight:bold;*/
-/*    cursor:pointer;*/
-/*}*/
-
 .homepage-search button{
     height:42px;
     padding:0 24px;
-    background:#bcc3ca;
-    color:#1f2937;
+    background: #d6dbe1;
+    color: #1f2937;
     border:none;
     border-radius:7px;
     font-size:16px;
-    font-weight:bold;
+    font-weight:normal;
     cursor:pointer;
 }
 
@@ -1203,8 +1199,8 @@ display:block;
 .my-ads-page .filter-group button{
     height:42px;
     padding:0 24px;
-    background:#2563eb;
-    color:white;
+    background:#bcc3ca;
+    color:#1f2937;
     border:none;
     border-radius:7px;
     font-size:16px;
@@ -1212,9 +1208,7 @@ display:block;
     cursor:pointer;
 }
 
-.my-ads-page .filter-group button:hover{
-    background:#1d4ed8;
-}
+
 
 
 /******** GALÉRIA FOTIEK V DETAILE INZERÁTU ********/
