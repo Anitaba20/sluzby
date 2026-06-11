@@ -630,6 +630,14 @@ body{
     border-radius:8px;
 }
 
+.search-results-page .homepage-search{
+    margin-bottom:12px;
+}
+
+.search-count{
+    margin:0 0 6px 0;
+}
+
 /******** KATEGORIE ********/
 
 .category-page{
@@ -897,9 +905,6 @@ body{
 }
 
 /******** PRIDANIE / KONTAKT FORM ********/
-
-/******** PRIDANIE / KONTAKT FORM ********/
-
 .add-ad-page{
     padding:40px;
     display:flex;
@@ -964,11 +969,6 @@ body{
 .price-checkbox input{
     width:auto;
 }
-
-
-
-
-
 
 .price-checkbox input{
     width:auto;

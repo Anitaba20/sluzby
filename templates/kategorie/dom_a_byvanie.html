@@ -6,88 +6,106 @@
 
 <div class="main-page">
 
-    <div class="category-page">
+```
+<div class="category-page">
 
-        <div class="side-filter">
+    <div class="side-filter">
 
-            <h2>Podkategórie</h2>
+        <h2>Podkategórie</h2>
 
-            <div class="subcategories">
-                <a href="#">Rekonštrukcie</a>
-                <a href="#">Maľovanie a stierkovanie</a>
-                <a href="#">Elektrikárske práce</a>
-                <a href="#">Vodoinštalačné práce</a>
-                <a href="#">Iné</a>
-            </div>
+        <div class="subcategories">
 
-        </div>
+            <a href="{{ url_for('podkategoria', nazov='Rekonštrukcie') }}">
+                Rekonštrukcie
+            </a>
 
-        <div class="ads-list">
+            <a href="{{ url_for('podkategoria', nazov='Maľovanie a stierkovanie') }}">
+                Maľovanie a stierkovanie
+            </a>
 
-            <h1>Dom a bývanie</h1>
+            <a href="{{ url_for('podkategoria', nazov='Elektrikárske práce') }}">
+                Elektrikárske práce
+            </a>
 
-            {% for inzerat in inzeraty %}
+            <a href="{{ url_for('podkategoria', nazov='Vodoinštalačné práce') }}">
+                Vodoinštalačné práce
+            </a>
 
-                <div class="ad-item">
-
-                    <div class="ad-icon">
-                        🏠
-                    </div>
-
-                    <div class="ad-content">
-
-                        <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
-                           class="ad-title">
-                            {{ inzerat.nazov }}
-                        </a>
-
-                        <p>
-                            {{ inzerat.popis[:180] }}...
-                        </p>
-
-                        <strong>
-                            Cena:
-
-                            {% if inzerat.cena_dohodou %}
-                                dohodou
-
-                            {% elif inzerat.cena %}
-
-                                {% if inzerat.cena == inzerat.cena|int %}
-                                    {{ inzerat.cena|int }} €
-                                {% else %}
-                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
-                                {% endif %}
-
-                            {% else %}
-                                dohodou
-                            {% endif %}
-                        </strong>
-
-                        <p>
-                            📍 {{ inzerat.lokalita }}
-                        </p>
-
-                        <p>
-                            Pridané:
-                            {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
-                        </p>
-
-                    </div>
-
-                </div>
-
-            {% else %}
-
-                <p>
-                    V tejto kategórii zatiaľ nie sú žiadne inzeráty.
-                </p>
-
-            {% endfor %}
+            <a href="{{ url_for('podkategoria', nazov='Iné') }}">
+                Iné
+            </a>
 
         </div>
 
     </div>
+
+    <div class="ads-list">
+
+        <h1>Dom a bývanie</h1>
+
+        {% for inzerat in inzeraty %}
+
+            <div class="ad-item">
+
+                <div class="ad-icon">
+                    🏠
+                </div>
+
+                <div class="ad-content">
+
+                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
+                       class="ad-title">
+                        {{ inzerat.nazov }}
+                    </a>
+
+                    <p>
+                        {{ inzerat.popis[:180] }}...
+                    </p>
+
+                    <strong>
+                        Cena:
+
+                        {% if inzerat.cena_dohodou %}
+                            dohodou
+
+                        {% elif inzerat.cena %}
+
+                            {% if inzerat.cena == inzerat.cena|int %}
+                                {{ inzerat.cena|int }} €
+                            {% else %}
+                                {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                            {% endif %}
+
+                        {% else %}
+                            dohodou
+                        {% endif %}
+                    </strong>
+
+                    <p>
+                        📍 {{ inzerat.lokalita }}
+                    </p>
+
+                    <p>
+                        Pridané:
+                        {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <p>
+                V tejto kategórii zatiaľ nie sú žiadne inzeráty.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+```
 
 </div>
 
