@@ -656,7 +656,7 @@ def detail_inzeratu(inzerat_id):
     dalsie_inzeraty = Inzerat.query.filter(
         Inzerat.user_id == inzerat.user_id,
         Inzerat.id != inzerat.id
-    ).limit(5).all()
+    ).limit(3).all()
 
     pocet_inzeratov = Inzerat.query.filter_by(user_id=inzerat.user_id).count()
 
@@ -672,6 +672,21 @@ def detail_inzeratu(inzerat_id):
         pocet_inzeratov=pocet_inzeratov
     )
 
+@app.route("/poskytovatel/<int:user_id>/inzeraty")
+def inzeraty_poskytovatela(user_id):
+    poskytovatel = User.query.get_or_404(user_id)
+
+    inzeraty = Inzerat.query.filter_by(
+        user_id=user_id
+    ).order_by(
+        Inzerat.datum_pridania.desc()
+    ).all()
+
+    return render_template(
+        "inzeraty/inzeraty_poskytovatela.html",
+        poskytovatel=poskytovatel,
+        inzeraty=inzeraty
+    )
 
 @app.route("/upravit-inzerat/<int:inzerat_id>", methods=["GET", "POST"])
 def upravit_inzerat(inzerat_id):

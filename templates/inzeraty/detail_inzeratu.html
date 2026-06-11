@@ -250,6 +250,14 @@
 
                 {% endfor %}
 
+                {% if poskytovatel %}
+                    <p style="margin-top:15px;">
+                        <a href="{{ url_for('inzeraty_poskytovatela', user_id=poskytovatel.id) }}">
+                            Zobraziť všetkých {{ pocet_inzeratov }} inzerátov →
+                        </a>
+                    </p>
+                {% endif %}
+
             {% else %}
 
                 <p>Žiadne ďalšie inzeráty.</p>

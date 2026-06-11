@@ -1,0 +1,74 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Inzeráty poskytovateľa{% endblock %}
+
+{% block content %}
+
+<div class="main-page">
+
+    <div class="search-results-page">
+
+        <h1>Inzeráty poskytovateľa: {{ poskytovatel.username }}</h1>
+
+        <p class="search-count">
+            Počet inzerátov: {{ inzeraty|length }}
+        </p>
+
+        {% if inzeraty %}
+
+            <div class="search-results-list">
+
+                {% for inzerat in inzeraty %}
+
+                    <a href="{{ url_for('detail_inzeratu', inzerat_id=inzerat.id) }}"
+                       class="search-result-card">
+
+                        <h2>{{ inzerat.nazov }}</h2>
+
+                        <p>
+                            {{ inzerat.lokalita }}
+
+                            {% if inzerat.psc %}
+                                | {{ inzerat.psc }}
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            {{ inzerat.kategoria }}
+
+                            {% if inzerat.podkategoria %}
+                                | {{ inzerat.podkategoria }}
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            {% if inzerat.cena_dohodou %}
+                                Cena dohodou
+                            {% else %}
+                                {% if inzerat.cena == inzerat.cena|int %}
+                                    {{ inzerat.cena|int }} €
+                                {% else %}
+                                    {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
+                                {% endif %}
+                            {% endif %}
+                        </p>
+
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p class="empty-results">
+                Tento poskytovateľ zatiaľ nemá žiadne inzeráty.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
