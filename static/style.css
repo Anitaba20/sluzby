@@ -1,11 +1,9 @@
 /******** RESET ********/
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
 
 /******** LAYOUT ********/
 
@@ -35,24 +33,12 @@ body{
 
 
 /******** HEADER ********/
-
 .header{
     height:90px;
     padding:0 40px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-}
-
-.logo-main{
-    font-size:38px;
-    font-weight:bold;
-    color:#0b132b;
-}
-
-.logo-sub{
-    font-size:15px;
-    color:#666;
 }
 
 .menu{
@@ -67,17 +53,9 @@ body{
     font-size:16px;
 }
 
-/*.btn{*/
-/*    margin-left:15px;*/
-/*    background:#d1d5db;*/
-/*    color:#1f2937 !important;*/
-/*    padding:12px 20px;*/
-/*    border-radius:8px;*/
-/*}*/
-
 .btn{
     margin-left:15px;
-    background: #d6dbe1;
+    background:#d6dbe1;
     color: #1f2937;
     padding:12px 20px;
     border-radius:8px;
@@ -88,18 +66,7 @@ body{
     background:#dddddd;
 }
 
-
-/******** FOOTER ********/
-
-.footer{
-    padding:20px 40px;
-    color:#666;
-    font-size:14px;
-}
-
-
 /******** REGISTRACIA ********/
-
 .register-wrapper{
     display:flex;
     justify-content:center;
@@ -206,22 +173,16 @@ body{
     width:100%;
     margin-top:22px;
     padding:14px;
-    background:#2563eb;
-    color:white;
+    background:#d6dbe1;
+    color:#1f2937;
     border:none;
     border-radius:5px;
     font-size:19px;
-    font-weight:bold;
+    font-weight:normal;
     cursor:pointer;
 }
 
-.register-btn:hover{
-    background:#1d4ed8;
-}
-
-
 /******** PRIHLASENIE ********/
-
 .login-wrapper{
     display:flex;
     justify-content:center;
@@ -259,26 +220,22 @@ body{
 }
 
 .forgot-password a{
-    color:#2563eb;
+    color:#1f2937;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:normal;
 }
 
 .login-btn{
     width:100%;
     margin-top:22px;
     padding:14px;
-    background:#2563eb;
-    color:white;
+    background:#d6dbe1;
+    color:#1f2937;
     border:none;
     border-radius:5px;
     font-size:19px;
-    font-weight:bold;
+    font-weight:normal;
     cursor:pointer;
-}
-
-.login-btn:hover{
-    background:#1d4ed8;
 }
 
 .register-link{
@@ -313,7 +270,6 @@ body{
 }
 
 /******** GOOGLE OAUTH ********/
-
 .oauth-divider{
     text-align:center;
     margin:18px 0;
@@ -333,12 +289,8 @@ body{
     background:white;
 }
 
-.google-btn:hover{
-    background:#f3f4f6;
-}
 
 /******** POVINNY UDAJ ********/
-
 .required-note-bottom{
     margin-top:10px;
     margin-bottom:15px;
@@ -380,7 +332,6 @@ body{
 }
 
 /******** NOVY HEADER ********/
-
 .header-left{
     display:flex;
     align-items:center;
@@ -398,7 +349,7 @@ body{
 }
 
 .logo img{
-    height:48px;
+    height:25px;
     width:auto;
 }
 
@@ -440,10 +391,6 @@ body{
     background:white;
 }
 
-.category-dropdown a:hover{
-    background:#f3f4f6;
-}
-
 .category-item{
     position:relative;
 }
@@ -469,7 +416,6 @@ body{
 
 
 /******** HOMEPAGE ********/
-
 .homepage-hero{
     height:651px;
     padding:70px 40px 40px;
@@ -536,19 +482,16 @@ body{
     cursor:pointer;
 }
 
-
-
-
-
-
 /******** FOOTER ********/
-
 .footer{
     width:1280px;
     margin:0 auto;
     background:white;
     border-top:1px solid #ddd;
     text-align:center;
+    padding:20px 40px;
+    color:#666;
+    font-size:14px;
 }
 
 .footer-links{
@@ -562,13 +505,7 @@ body{
     color:#374151;
     text-decoration:none;
 }
-
-.footer-links a:hover{
-    text-decoration:underline;
-}
-
 /******** VYHLADAVANIE ********/
-
 .search-results-page{
     padding:40px;
 }
@@ -594,8 +531,8 @@ body{
 }
 
 .search-filter-form button{
-    background:#2563eb;
-    color:white;
+    background:#d6dbe1;
+    color:#1f2937;
     border:none;
     border-radius:6px;
     padding:0 18px;
@@ -620,7 +557,7 @@ body{
 }
 
 .search-result-card h2{
-    font-size:22px;
+    font-size:14px;
     margin-bottom:8px;
 }
 
@@ -643,10 +580,7 @@ body{
     margin:0 0 6px 0;
 }
 
-
-
 /******** KATEGORIE ********/
-
 .category-page{
     display:grid;
     grid-template-columns:260px 1fr;
@@ -680,7 +614,7 @@ body{
 }
 
 .ads-list h1{
-    font-size:34px;
+    font-size:18px;
     margin-bottom:24px;
     color:#111827;
 }
@@ -710,15 +644,11 @@ body{
 
 .ad-title{
     display:block;
-    font-size:22px;
+    font-size:14px;
     font-weight:bold;
     color:#111827;
     text-decoration:none;
     margin-bottom:8px;
-}
-
-.ad-title:hover{
-    color:#2563eb;
 }
 
 .ad-content p{
@@ -734,7 +664,6 @@ body{
 }
 
 /******** MOJE INZERÁTY ********/
-
 .my-ads-page{
     padding:40px;
 }
@@ -754,7 +683,14 @@ body{
 }
 
 .my-ad-card h3{
+    font-size:16px;
     margin-bottom:10px;
+}
+
+.my-ad-card h3 a{
+    font-weight:bold;
+    color:#111827;
+    text-decoration:none;
 }
 
 .my-ad-card p{
@@ -764,7 +700,7 @@ body{
 .my-ad-card a{
     color:#2563eb;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:normal;
 }
 
 /******** DETAIL INZERÁTU ********/
@@ -791,7 +727,7 @@ body{
 }
 
 .detail-actions button{
-    border:1px solid #d1d5db;
+    border:1px solid #d6dbe1;
     background:#f9fafb;
     padding:8px 12px;
     border-radius:6px;
@@ -799,7 +735,7 @@ body{
 }
 
 .detail-main h1{
-    font-size:34px;
+    font-size:16px;
     margin-bottom:12px;
     color:#111827;
 }
@@ -812,6 +748,7 @@ body{
 }
 
 .detail-main h2{
+    font-size:14px;
     margin:18px 0;
     color:#111827;
 }
@@ -827,12 +764,12 @@ body{
 
 .contact-btn{
     display:inline-block;
-    background:#2563eb;
-    color:white;
+    background:#d6dbe1;
+    color:#1f2937;
     padding:12px 18px;
     border-radius:8px;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:normal;
 }
 
 .provider-box{
@@ -858,7 +795,7 @@ body{
 .other-ad a{
     color:#2563eb;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:normal;
 }
 
 .review{
@@ -977,29 +914,9 @@ body{
     width:auto;
 }
 
-.price-checkbox input{
-    width:auto;
-}
-
-.header-left{
-display:flex;
-align-items:center;
-gap:30px;
-}
-
 .logo-wrapper{
 display:flex;
 flex-direction:column;
-}
-
-.logo{
-display:block;
-text-decoration:none;
-}
-
-.logo img{
-height:30px;
-display:block;
 }
 
 .logo-subtitle{
@@ -1036,41 +953,14 @@ display:block;
 }
 
 .detail-link{
-    color:#2563eb;
+    color: #1f2937;
     text-decoration:none;
     font-weight:600;
 }
 
 .edit-btn{
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    padding:8px 16px;
-    border-radius:8px;
-    font-weight:600;
-}
-
-.edit-btn:hover{
-    background:#1d4ed8;
-}
-
-.delete-btn{
-    background:#ef4444;
-    color:white;
-    border:none;
-    padding:8px 16px;
-    border-radius:8px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-.delete-btn:hover{
-    background:#dc2626;
-}
-
-.edit-btn{
-    background:#2563eb !important;
-    color:white !important;
+    background:#d6dbe1;
+    color:#1f2937;
     text-decoration:none;
     padding:8px 16px;
     border-radius:8px;
@@ -1078,87 +968,15 @@ display:block;
 }
 
 .delete-btn{
-    background:#ef4444;
-    color:white;
+    background:#d6dbe1;
+    color:#1f2937;
     border:none;
     padding:8px 16px;
     border-radius:8px;
     font-weight:600;
     cursor:pointer;
 }
-
-.detail-link{
-    color:#2563eb !important;
-    text-decoration:none;
-    font-weight:600;
-}
-
-/* MOJE KONTO */
-.my-account-page{
-    padding:40px;
-}
-
-.my-account-page h1{
-    font-size:38px;
-    margin-bottom:25px;
-    color:#0f172a;
-}
-
-.account-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-.account-card p{
-    margin-bottom:16px;
-    font-size:18px;
-}
-
-.account-links{
-    margin-top:25px;
-}
-
-.account-btn{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    padding:12px 24px;
-    border-radius:8px;
-    font-weight:600;
-}
-
-.account-btn:hover{
-    background:#1d4ed8;
-}
-
-.account-links{
-    display:flex;
-    gap:12px;
-    margin-top:25px;
-    align-items:center;
-}
-
-.delete-account-btn{
-    background:#ef4444;
-    color:white;
-    border:none;
-    padding:12px 24px;
-    border-radius:8px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-.delete-account-btn:hover{
-    background:#dc2626;
-}
-
 /******** FILTER V PODKATEGÓRII ********/
-
 .my-ads-page .search-filter-form{
     max-width:980px;
     margin:0 auto 25px;
@@ -1199,20 +1017,17 @@ display:block;
 .my-ads-page .filter-group button{
     height:42px;
     padding:0 24px;
-    background:#bcc3ca;
+    background:#d6dbe1;
     color:#1f2937;
     border:none;
     border-radius:7px;
     font-size:16px;
-    font-weight:bold;
+    font-weight:normal;
     cursor:pointer;
 }
 
 
-
-
 /******** GALÉRIA FOTIEK V DETAILE INZERÁTU ********/
-
 .detail-photo-section {
     margin-top: 28px;
 }
@@ -1247,3 +1062,12 @@ display:block;
     text-align: justify;
     line-height: 1.6;
 }
+
+/*h1*/
+.my-ads-page h1{
+    font-size:25px;
+    margin-bottom:30px;
+    color:#111827;
+}
+
+
