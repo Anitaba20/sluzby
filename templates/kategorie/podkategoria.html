@@ -105,6 +105,11 @@
                     </p>
 
                     <p>
+                        Pridané:
+                        {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
+                    </p>
+
+                    <p>
                         Cena:
 
                         {% if inzerat.cena_dohodou %}
@@ -133,7 +138,9 @@
 
         {% else %}
 
-            <p>V tejto podkategórii zatiaľ nie sú žiadne inzeráty.</p>
+            <p>
+                V tejto podkategórii zatiaľ nie sú žiadne inzeráty.
+            </p>
 
         {% endif %}
 
