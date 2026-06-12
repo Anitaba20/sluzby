@@ -511,7 +511,7 @@ body{
 }
 
 .search-results-page h1{
-    font-size:34px;
+    font-size:16px;
     margin-bottom:22px;
     color:#111827;
 }
@@ -959,10 +959,14 @@ flex-direction:column;
     align-items:center;
 }
 
-.detail-link{
-    color: #1f2937;
+.my-ad-card .detail-link{
+    background:#d6dbe1;
+    color:#1f2937;
     text-decoration:none;
+    padding:8px 16px;
+    border-radius:8px;
     font-weight:600;
+    cursor:pointer;
 }
 
 .edit-btn{
@@ -972,16 +976,38 @@ flex-direction:column;
     padding:8px 16px;
     border-radius:8px;
     font-weight:600;
+    cursor:pointer;
+}
+
+.my-ad-card .edit-btn{
+    background:#d6dbe1;
+    color:#1f2937;
+    text-decoration:none;
+    padding:8px 16px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
 }
 
 .delete-btn{
-    background:#d6dbe1;
-    color:#1f2937;
+    background:#f8e4e4;
+    color:#9f2f2f;
     border:none;
     padding:8px 16px;
     border-radius:8px;
     font-weight:600;
     cursor:pointer;
+}
+
+.delete-btn{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+}
 }
 /******** FILTER V PODKATEGÓRII ********/
 .my-ads-page .search-filter-form{
