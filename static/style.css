@@ -597,7 +597,7 @@ body{
 }
 
 .side-filter h2{
-    font-size:22px;
+    font-size:16px;
     margin-bottom:15px;
 }
 
@@ -611,6 +611,13 @@ body{
     color:#2563eb;
     text-decoration:none;
     font-weight:bold;
+}
+
+.subcategories a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
 }
 
 .ads-list h1{
