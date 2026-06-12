@@ -44,15 +44,21 @@
 
             <div class="search-field">
                 <label>Dátum pridania</label>
+
                 <select name="sort">
-                    <option value="newest" {% if sort == "newest" %}selected{% endif %}>
+
+                    <option value="newest"
+                        {% if sort == "newest" %}selected{% endif %}>
                         Najnovšie
                     </option>
 
-                    <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>
+                    <option value="oldest"
+                        {% if sort == "oldest" %}selected{% endif %}>
                         Najstaršie
                     </option>
+
                 </select>
+
             </div>
 
             <button type="submit">
@@ -102,6 +108,11 @@
                                     {{ "%.2f"|format(inzerat.cena)|replace(".", ",") }} €
                                 {% endif %}
                             {% endif %}
+                        </p>
+
+                        <p>
+                            Pridané:
+                            {{ inzerat.datum_pridania.strftime("%d. %m. %Y") }}
                         </p>
 
                     </a>
