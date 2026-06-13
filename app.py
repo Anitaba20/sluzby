@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 app.secret_key = os.getenv("SECRET_KEY", "tajny-kluc")
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://neondb_owner:npg_VZImzyN8j4oQ@ep-soft-voice-agrvr8gn-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+app.config["SQLALCHEMY_DATABASE_URI"] = "...
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
